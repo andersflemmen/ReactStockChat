@@ -8,6 +8,7 @@ package no.hib.mod250.rest;
 import javax.ejb.Stateless;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 /**
@@ -16,18 +17,25 @@ import javax.ws.rs.Produces;
  */
 @Stateless
 @Path("stocks")
-public class StockREST {
+public class StockFacadeREST {
     
     private StockConsumer sc;
     
-    public StockREST() {
+    public StockFacadeREST() {
         sc = new StockConsumer();
     }
     
     @GET
-    @Path("all")
+    @Path("allCurrencies")
     @Produces({"application/json"})
     public String countREST() {
-        return sc.getStocks();
+        return sc.getAllCurrencies();
+    }
+    
+    @GET
+    @Path("single/{symbol}")
+    @Produces({"application/json"})
+    public String getSingleStock(@PathParam("symbol") String symbol) {
+        return sc.getStock(symbol);
     }
 }
