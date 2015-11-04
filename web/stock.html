@@ -29,12 +29,9 @@
                 render: function(){
                     return(
                         <div>
-                            <select id="lang" onChange={this.change} value={this.state.value}>
-                            <option value="GOOG">GOOG</option>
-                            <option value="NVDA">NVDA</option>
-                            <option value="YHOO">YHOO</option>
-                        </select>
+                            <input type="text" name="search" value="" />
                 <p>{"REST/stocks/single/" + this.state.value}</p>
+
                         <StockBox url={"REST/stocks/single/" + this.state.value} pollInterval={10000} />
                     </div>
                 );}
