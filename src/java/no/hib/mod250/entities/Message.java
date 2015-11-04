@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package no.hib.mod250.entity;
+package no.hib.mod250.entities;
 
 import java.io.Serializable;
 import java.util.Calendar;
@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -29,21 +30,14 @@ public class Message implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
+    @XmlElement
     private String message;
     
-    private User user;
-    private Room room;
+    @XmlElement
+    private String username;
     
     @Temporal(TemporalType.TIMESTAMP)
-    private Calendar time;
-
-    public Room getRoom() {
-        return room;
-    }
-
-    public void setRoom(Room room) {
-        this.room = room;
-    }
+    private Calendar postedTime;
 
     public String getMessage() {
         return message;
@@ -53,20 +47,20 @@ public class Message implements Serializable {
         this.message = message;
     }
 
-    public User getUser() {
-        return user;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public Calendar getTime() {
-        return time;
+    public Calendar getPostedTime() {
+        return postedTime;
     }
 
-    public void setTime(Calendar time) {
-        this.time = time;
+    public void setPostedTime(Calendar time) {
+        this.postedTime = time;
     }
 
     public Long getId() {
