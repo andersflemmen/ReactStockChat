@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package no.hib.mod250.entity;
+package no.hib.mod250.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;

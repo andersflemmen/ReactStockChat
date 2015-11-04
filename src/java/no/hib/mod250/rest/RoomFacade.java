@@ -8,7 +8,7 @@ package no.hib.mod250.rest;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import no.hib.mod250.entity.Room;
+import no.hib.mod250.entities.Room;
 
 /**
  *
