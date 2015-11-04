@@ -36,6 +36,9 @@ public class Comment implements Serializable {
     private String username;
     @XmlElement
     private String symbol;
+    
+    @Temporal(TemporalType.TIMESTAMP)
+    private Calendar postedTime;
 
     public String getSymbol() {
         return symbol;
@@ -44,9 +47,6 @@ public class Comment implements Serializable {
     public void setSymbol(String symbol) {
         this.symbol = symbol;
     }
-    
-    @Temporal(TemporalType.TIMESTAMP)
-    private Calendar postedTime;
 
     public String getMessage() {
         return message;

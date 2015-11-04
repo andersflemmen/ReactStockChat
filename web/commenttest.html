@@ -22,7 +22,7 @@
             var data = JSON.stringify({username: username, message: message});
             
           $.ajax({
-            url: 'REST/comments/new',
+            url: 'REST/messages/new',
             contentType: 'application/json; charset=utf-8',
             dataType: 'json',
             type: 'POST',
