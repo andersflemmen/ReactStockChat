@@ -3,17 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package no.hib.mod250.entity;
+package no.hib.mod250.entities;
 
 import java.io.Serializable;
-import java.util.Calendar;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -21,53 +18,17 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Anders
  */
 @Entity
-@Table(name = "chat_message")
+@Table(name = "chat_user")
 @XmlRootElement
-public class Message implements Serializable {
+public class User implements Serializable {
+    
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    private String message;
-    
-    private User user;
-    private Room room;
-    
-    @Temporal(TemporalType.TIMESTAMP)
-    private Calendar time;
-
-    public Room getRoom() {
-        return room;
-    }
-
-    public void setRoom(Room room) {
-        this.room = room;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Calendar getTime() {
-        return time;
-    }
-
-    public void setTime(Calendar time) {
-        this.time = time;
-    }
+    private String name;
 
     public Long getId() {
         return id;
@@ -87,10 +48,10 @@ public class Message implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Message)) {
+        if (!(object instanceof User)) {
             return false;
         }
-        Message other = (Message) object;
+        User other = (User) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -99,7 +60,7 @@ public class Message implements Serializable {
 
     @Override
     public String toString() {
-        return "no.hib.mod250.entity.Message[ id=" + id + " ]";
+        return "no.hib.mod250.entity.User[ id=" + id + " ]";
     }
     
 }

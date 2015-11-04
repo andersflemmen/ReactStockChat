@@ -17,7 +17,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import no.hib.mod250.entity.Message;
+import no.hib.mod250.entities.Message;
 
 /**
  *
@@ -38,33 +38,25 @@ public class MessageFacadeREST extends AbstractFacade<Message> {
     }
 
     @POST
-    @Path("add/{roomId}/{message}")
-    public void newMessage(@PathParam("roomId") long roomId, 
-            @PathParam("message") String message) {
+    @Path("add/{message}/{username}")
+    public void newMessage(@PathParam("message") String message,
+            @PathParam("username") String username) {
         
         Message m = new Message();
         m.setMessage(message);
-        m.setRoom(rf.find(roomId));
-        m.setTime(Calendar.getInstance());
+        m.setPostedTime(Calendar.getInstance());
+        m.setUsername(username);
     
         super.create(m);
     }
 
     @GET
-    @Path("{roomId}")
+    @Path("last")
     @Produces({"application/json"})
-    public List<Message> getMessagesByRoom(@PathParam("roomId") long roomId) {      
-        Query q = em.createQuery("SELECT m FROM Message m WHERE m.room.id = :roomId");
-        q.setParameter("roomId", roomId);
+    public List<Message> getMessages() {      
+        Query q = em.createQuery("SELECT m FROM Message m ORDER BY m.postedTime DESC").setMaxResults(100);
 
         return q.getResultList();
-    }
-    
-    @GET
-    @Path("count")
-    @Produces("text/plain")
-    public String countREST() {
-        return String.valueOf(super.count());
     }
 
     @Override

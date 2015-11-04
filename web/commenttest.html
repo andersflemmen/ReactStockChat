@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>React Tutorial</title>
+    <!-- Not present in the tutorial. Just for basic styling. -->
+    <link rel="stylesheet" href="css/base.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.0/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.6.15/browser.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.2/marked.min.js"></script>
+  </head>
+<body>
+    <div id="content"></div>
+    <script type="text/babel">
+
+      var CommentBox = React.createClass({
+        handleCommentSubmit: function(e) {
+            e.preventDefault();
+            var username = React.findDOMNode(this.refs.username).value.trim();
+            var message = React.findDOMNode(this.refs.message).value.trim();
+            var data = JSON.stringify({username: username, message: message});
+            
+          $.ajax({
+            url: 'REST/comments/new',
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            type: 'POST',
+            data: data,
+            success: function() {
+            }.bind(this),
+            error: function(xhr, status, err) {
+              console.error(this.props.url, status, err.toString());
+            }.bind(this)
+          });
+        },
+        render: function() {
+          return (
+            <div className="commentBox">
+              <h1>Comments</h1>
+              <form className="commentForm" onSubmit={this.handleCommentSubmit}>
+              <input type="text" placeholder="Your name" ref="username" />
+              <input type="text" placeholder="Say something..." ref="message" />
+              <input type="submit" value="Post" />
+            </form>
+            </div>
+          );
+        }
+      });
+
+      React.render(
+          <CommentBox />,
+          document.getElementById('content')
+      )
+    </script>
+  </body>
+</html>
