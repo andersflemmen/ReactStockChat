@@ -1,0 +1,111 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>React Tutorial</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.0/react.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.6.15/browser.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.2/marked.min.js"></script>
+
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <h1>Welcome to React demo! </h1>
+  <nav></nav>
+  <div id="content"></div>
+  <script type="text/babel">
+
+  var NavBarLink = React.createClass({
+    render: function() {
+      return (
+        <a data href={this.props.url}>{this.props.text}</a>
+      );
+    }
+  });
+
+  var NavBarItem = React.createClass({
+    generateLink: function(){
+      return <NavBarLink url={this.props.url} text={this.props.text} />
+    },
+    generateSubmenu: function(){
+      return <NavBar items={this.props.submenu} />
+    },
+    generateContent: function(){
+      var content = [this.generateLink()];
+      if(this.props.submenu){
+        content.push(this.generateSubmenu());
+      }
+      return content;
+    },
+    render: function() {
+      var content = this.generateContent();
+      return (
+
+        <li class="dropdown">
+          {content}
+        </li>
+      );
+    }
+  });
+
+  var NavBar = React.createClass({
+    generateItem: function(item){
+      return <NavBarItem text={item.text} url={item.url} submenu={item.submenu} />
+    },
+    render: function() {
+      var items = this.props.items.map(this.generateItem);
+      return (
+        <div>
+          <ul className="navbar navbar-inverse">
+            {items}
+          </ul>
+        </div>
+      );
+    }
+  });
+
+  var MainNavBar = React.createClass({
+    makeNavBar: function(){
+      return <NavBar items={this.props.items}  />
+    },
+    render: function() {
+      var  mainNav = this.makeNavBar();
+      return(
+        <nav class = "navbar navbar-inverse">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">ReactDemo</a>
+          </div>
+        {mainNav}
+        </nav>
+    );
+    }
+  });
+
+  var data = [
+    {
+      "text": "Currency",
+      "url": "stocks.html"
+    },
+    {
+      "text": "BA",
+      "url": "http://ba.no",
+      "submenu": [
+        {
+          "text": "VG",
+          "url": "http://vg.no"
+        }
+      ]
+    }
+  ]
+
+  window.onload = React.render(
+    <MainNavBar items={data} />,
+    document.querySelector('nav')
+  );
+
+
+  </script>
+</body>
+</html>
