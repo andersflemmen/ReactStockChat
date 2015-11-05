@@ -46,7 +46,6 @@ var StockBox = React.createClass({
         render: function() {
           return (
             <div className="stockBox">
-              <h1>Currencies</h1>
               <StockList stocks={this.state.stocks} />
             </div>
           );

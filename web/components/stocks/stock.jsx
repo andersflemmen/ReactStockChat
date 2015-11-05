@@ -11,7 +11,9 @@ var Stock = React.createClass({
                     </h3>
                 </div>
                 <div className="panel-body">
-                    <table>
+                    <table className="stockPanelTable" >
+                        <col width="50%" />
+                        <col width="50%" />
                         <td>
                             <div className="">
                                 <ul className="list-group">
