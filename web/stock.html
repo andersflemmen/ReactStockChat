@@ -17,36 +17,8 @@
   <body>
       <div id="content">
           <script type="text/jsx">
-                var MySelect = React.createClass({
-                    getInitialState: function() {
-                        return {
-                        value: 'GOOG'
-                    }
-                },
-                submit: function(event){
-                    event.preventDefault();
-                    var stockSymbol = React.findDOMNode(this.refs.inputField).value.trim();
-                    this.setState({value: stockSymbol});
-                    this.refs.stockbox.update("REST/stocks/single/" + stockSymbol);
-                },
-                render: function(){
-                    return(
-                        <div>
-                        <form onSubmit={this.submit}>
-                            <input type="text" name="search" ref="inputField"/>
-                            <input type="submit" value="Request" />
-                        </form>
-                            
-                <p>{"REST/stocks/single/" + this.state.value}</p>
-
-                        <StockBox url={"REST/stocks/single/" + this.state.value} pollInterval={10000} ref="stockbox" />
-                    </div>
-                );}
-            });
-
-        
             React.render(
-                <MySelect/>,
+                <StockView/>,
                 document.getElementById('content')
             );
         </script>
