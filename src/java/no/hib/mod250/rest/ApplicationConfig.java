@@ -31,6 +31,7 @@ public class ApplicationConfig extends Application {
     private void addRestResourceClasses(Set<Class<?>> resources) {
        resources.add(no.hib.mod250.rest.CommentFacadeREST.class);
         resources.add(no.hib.mod250.rest.MessageFacadeREST.class);
+        resources.add(no.hib.mod250.rest.StatsFacadeREST.class);
         resources.add(no.hib.mod250.rest.StockFacadeREST.class);
         
     }

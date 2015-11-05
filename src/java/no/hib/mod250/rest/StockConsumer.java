@@ -44,6 +44,8 @@ public class StockConsumer {
     private final String STOCK_END = "/quote?format=json&view=detail";
     
     private Map<String, Stock> stockMap;
+    
+    private int numberOfSearches = 0;
 
     public StockConsumer() {
         stockMap = new HashMap<String, Stock>();
@@ -58,6 +60,8 @@ public class StockConsumer {
     }
     
     public String getStock(String symbol) {
+        numberOfSearches++;
+        
         if (stockMap.containsKey(symbol)) {
             if (lastStockRequest == null || lastStockRequest.getTimeInMillis() + 10000
                     < Calendar.getInstance().getTimeInMillis()) {

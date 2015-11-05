@@ -8,6 +8,9 @@ package no.hib.mod250.rest;
 import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.List;
+import javax.ejb.Lock;
+import javax.ejb.LockType;
+import javax.ejb.Singleton;
 import javax.ejb.Stateless;
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
@@ -27,8 +30,9 @@ import no.hib.mod250.entities.Comment;
  *
  * @author Anders
  */
-@Stateless
+@Singleton
 @Path("comments")
+@Lock(LockType.WRITE)
 public class CommentFacadeREST extends AbstractFacade<Comment> {
     @PersistenceContext(unitName = "ChatServerPU")
     private EntityManager em;
@@ -60,4 +64,13 @@ public class CommentFacadeREST extends AbstractFacade<Comment> {
         return em;
     }
     
+    public long countToday() {
+        Query q = em.createQuery("SELECT COUNT(c.id) FROM Comment c WHERE c.postedTime >= CURRENT_DATE");
+        return (long)q.getSingleResult();
+    }
+    
+    public List<Object[]> topTenCommented() {
+        Query q = em.createNativeQuery("SELECT symbol, COUNT(*) as sum FROM chat_comment GROUP BY symbol ORDER BY sum DESC").setMaxResults(10);
+        return q.getResultList();
+    }
 }

@@ -5,7 +5,11 @@
  */
 package no.hib.mod250.rest;
 
+import javax.ejb.Lock;
+import javax.ejb.LockType;
+import javax.ejb.Singleton;
 import javax.ejb.Stateless;
+import javax.json.JsonValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -15,11 +19,12 @@ import javax.ws.rs.Produces;
  *
  * @author Anders
  */
-@Stateless
+@Singleton
 @Path("stocks")
+@Lock(LockType.WRITE)
 public class StockFacadeREST {
     
-    private StockConsumer sc;
+    private final StockConsumer sc;
     
     public StockFacadeREST() {
         sc = new StockConsumer();
