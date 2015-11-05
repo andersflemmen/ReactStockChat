@@ -88,3 +88,7 @@ ul {
 .yellow {
     color: orange;
 }
+
+.stockPanel {
+    width: 450px;
+}
