@@ -91,6 +91,7 @@ ul {
 
 .stockPanel {
     width: 450px;
+    display: inline-block;
 }
 
 .stockPanelTable {
