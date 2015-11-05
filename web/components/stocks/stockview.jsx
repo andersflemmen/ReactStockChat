@@ -12,7 +12,7 @@ var StockView = React.createClass({
                         <CommentBox url="REST/messages/last" pollInterval={1000}/>
                     </div>
 
-                    <div className="chatAndStock">
+                    <div className="commentView">
                     </div>
 
                 </div>
