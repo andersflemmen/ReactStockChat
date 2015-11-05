@@ -6,19 +6,10 @@ var StockBox = React.createClass({
             dataType: 'json',
             cache: false,
             success: function(data) {
-              if (this.state.initial) {
                 this.setState({
-                  oldStocks: data.list.resources,
-                  stocks: data.list.resources,
-                  initialStocks: data.list.resources,
-                  initial: false
+                  stocks: data.resources,
                 });
-              } else {
-                this.setState({
-                  oldStocks: this.state.stocks,
-                  stocks: data.list.resources
-                });
-              }
+
             }.bind(this),
             error: function(xhr, status, err) {
               console.error(this.props.url, status, err.toString());
@@ -27,7 +18,7 @@ var StockBox = React.createClass({
         },
 
         getInitialState: function() {
-          return {stocks: [], oldStocks: [], initialStocks: [], initial: true};
+          return {stocks: []};
         },
 
         componentDidMount: function() {
@@ -38,8 +29,8 @@ var StockBox = React.createClass({
         render: function() {
           return (
             <div className="stockBox">
-              <h1>Stocks</h1>
-              <StockList stocks={this.state.stocks} oldStocks={this.state.oldStocks} initialStocks={this.state.initialStocks} />
+              <h1>Currencies</h1>
+              <StockList stocks={this.state.stocks} />
             </div>
           );
         }

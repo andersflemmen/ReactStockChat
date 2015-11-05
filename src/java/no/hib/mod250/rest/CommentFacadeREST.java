@@ -5,10 +5,12 @@
  */
 package no.hib.mod250.rest;
 
+import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.json.Json;
+import javax.json.JsonArrayBuilder;
 import javax.json.JsonObjectBuilder;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -46,18 +48,11 @@ public class CommentFacadeREST extends AbstractFacade<Comment> {
     @GET
     @Produces("application/json")
     @Path("get/{symbol}")
-    public String getCommentsBySymbol(@PathParam("symbol") String symbol) {
-        Query q = em.createQuery("SELECT c FROM Comment c WHERE c.symbol = symbol");
+    public List<Comment> getCommentsBySymbol(@PathParam("symbol") String symbol) {
+        Query q = em.createQuery("SELECT c FROM Comment c WHERE c.symbol LIKE :symbol");
+        q.setParameter("symbol", symbol);
         
-        List<Comment> comments = q.getResultList();
-        
-        JsonObjectBuilder builder = Json.createObjectBuilder();
-        
-        for (Comment c : comments) {
-            
-        }
-        
-        return null;
+        return q.getResultList();
     }
 
     @Override

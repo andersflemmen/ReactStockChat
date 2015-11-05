@@ -30,8 +30,8 @@ public class MessageFacadeREST extends AbstractFacade<Message> {
     @PersistenceContext(unitName = "ChatServerPU")
     private EntityManager em;
     
-    @EJB
-    private RoomFacade rf;
+//    @EJB
+//    private RoomFacade rf;
 
     public MessageFacadeREST() {
         super(Message.class);
