@@ -1,9 +1,20 @@
 var StockView = React.createClass({
-        render: function() {
-          return (
+    render: function() {
+        return (
             <div className="StockView">
-              <StockSearch/>
+                <div className="searchView">
+                    <StockSearch/>
+                </div>
+
+                <div className="chatView">
+                    <MessageBox/>
+                </div>
+
+                <div className="commentView">
+                </div>
+
+
             </div>
-          );
-        }
+        );
+    }
 });
