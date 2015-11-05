@@ -8,6 +8,9 @@ package no.hib.mod250.rest;
 import java.util.Calendar;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.ejb.Lock;
+import javax.ejb.LockType;
+import javax.ejb.Singleton;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -23,8 +26,9 @@ import no.hib.mod250.entities.Message;
  *
  * @author Anders
  */
-@Stateless
+@Singleton
 @Path("messages")
+@Lock(LockType.WRITE)
 public class MessageFacadeREST extends AbstractFacade<Message> {
     
     @PersistenceContext(unitName = "ChatServerPU")
@@ -67,4 +71,8 @@ public class MessageFacadeREST extends AbstractFacade<Message> {
         return em;
     }
     
+    public long countToday() {
+        Query q = em.createQuery("SELECT COUNT(m.id) FROM Message m WHERE m.postedTime >= CURRENT_DATE");
+        return (long)q.getSingleResult();
+    }
 }
