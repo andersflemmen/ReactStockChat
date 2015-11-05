@@ -8,6 +8,7 @@ package no.hib.mod250.stocks;
 import java.math.BigDecimal;
 import java.util.Calendar;
 import javax.json.Json;
+import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 
@@ -77,7 +78,8 @@ public class Stock {
     }
     
     public String generateJsonString() {
-        return generateJson().build().toString();
+        JsonArrayBuilder ab = Json.createArrayBuilder().add(generateJson());
+        return Json.createObjectBuilder().add("resources", ab).build().toString();
     }
 
     public String getName() {

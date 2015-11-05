@@ -58,7 +58,7 @@ public class StockConsumer {
     }
     
     public String getStock(String symbol) {
-        if (stockMap.containsKey("symbol")) {
+        if (stockMap.containsKey(symbol)) {
             if (lastStockRequest == null || lastStockRequest.getTimeInMillis() + 10000
                     < Calendar.getInstance().getTimeInMillis()) {
                 updateAllStocks();    
@@ -128,7 +128,7 @@ public class StockConsumer {
         
             stockMap.put(symbol, s);
             
-            return array.getJsonObject(0).toString();
+            return s.generateJsonString();
         }
         
         return null;

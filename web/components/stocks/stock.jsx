@@ -30,7 +30,7 @@ var Stock = React.createClass({
                             <li className="list-group-item list-group-item list-group-item-danger"><b>Day Low:</b> {this.props.stock.day_low}</li>
                             <li className="list-group-item list-group-item list-group-item-success"><b>Year High:</b> {this.props.stock.year_high}</li>
                             <li className="list-group-item list-group-item list-group-item-danger"><b>Year Low:</b> {this.props.stock.year_low}</li>
-                            <li className={this.props.stock.change > 0 ? "list-group-item list-group-item-success" : this.props.stock.change < 0 ? "list-group-item list-group-item-danger" : "list-group-item list-group-item-warning"}><b>Change:</b> <span>{this.props.stock.change}%</span></li>
+                            <li className={this.props.stock.change > 0 ? "list-group-item list-group-item-success" : this.props.stock.change < 0 ? "list-group-item list-group-item-danger" : "list-group-item list-group-item-warning"}><b>Change:</b> <span>{this.props.stock.change}</span></li>
                             
                         </ul>
                     </div>
