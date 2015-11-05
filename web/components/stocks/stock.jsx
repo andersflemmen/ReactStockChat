@@ -11,9 +11,9 @@ var Stock = React.createClass({
                     </h3>
                 </div>
                 <div className="panel-body">
-                    <table>
+                    <table classname="stockPanel">
                         <td>
-                            <div className="">
+                            <div className="stockInfoList">
                                 <ul className="list-group">
                                     <li className="list-group-item "><b>Price:</b> {this.props.stock.price}</li>
                                     <li className="list-group-item "><b>Symbol:</b> {this.props.stock.symbol}</li>
@@ -24,7 +24,7 @@ var Stock = React.createClass({
                             </div>
                         </td>
                         <td>
-                            <div className="">
+                            <div className="stockInfoList">
                                 <ul className="list-group">
                                     <li className="list-group-item list-group-item list-group-item-success"><b>Day High:</b> {this.props.stock.day_high}</li>
                                     <li className="list-group-item list-group-item list-group-item-danger"><b>Day Low:</b> {this.props.stock.day_low}</li>

@@ -92,3 +92,7 @@ ul {
 .stockPanel {
     width: 450px;
 }
+
+.stockInfoList{
+    width: 50%;
+}
