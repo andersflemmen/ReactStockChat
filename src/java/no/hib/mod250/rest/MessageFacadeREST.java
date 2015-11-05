@@ -38,14 +38,12 @@ public class MessageFacadeREST extends AbstractFacade<Message> {
     }
 
     @POST
-    @Path("add/{message}/{username}")
-    public void newMessage(@PathParam("message") String message,
-            @PathParam("username") String username) {
+    @Path("new")
+    public void newMessage(final Message m) {
         
-        Message m = new Message();
-        m.setMessage(message);
+        
         m.setPostedTime(Calendar.getInstance());
-        m.setUsername(username);
+       
     
         super.create(m);
     }
@@ -54,8 +52,13 @@ public class MessageFacadeREST extends AbstractFacade<Message> {
     @Path("last")
     @Produces({"application/json"})
     public List<Message> getMessages() {      
-        Query q = em.createQuery("SELECT m FROM Message m ORDER BY m.postedTime DESC").setMaxResults(100);
-
+      //  Query q = em.createQuery("SELECT m FROM Message m ORDER BY m.postedTime DESC").setMaxResults(100);
+     Query q = em.createQuery("SELECT m FROM Message m ORDER BY m.postedTime");
+        if(q.getResultList().size() > 100)
+        return q.getResultList().subList(q.getResultList().size() - 100, q.getResultList().size());
+        
+        else
+            
         return q.getResultList();
     }
 
