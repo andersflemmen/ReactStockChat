@@ -39,7 +39,7 @@ public class StockConsumer {
     private List<Stock> currencyData;
     private String currencyDataString;
     
-    private final String ALL_CURRENCIES = "http://finance.yahoo.com/webservice/v1/symbols/allcurrencies/quote?format=json";
+    private final String ALL_CURRENCIES = "http://finance.yahoo.com/webservice/v1/symbols/allcurrencies/quote?format=json&view=detail";
     private final String STOCK_START = "http://finance.yahoo.com/webservice/v1/symbols/";
     private final String STOCK_END = "/quote?format=json&view=detail";
     
