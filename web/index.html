@@ -2,52 +2,26 @@
 <head>
   <meta charset="utf-8">
   <title>React</title>
+
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.6.15/browser.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.2/marked.min.js"></script>
 
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="css/bootstrap.css" rel="stylesheet"/>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/JSXTransformer.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react-bootstrap/0.25.1/react-bootstrap.js"></script>
 
+  <script  type="text/jsx" src="components/navbar/navbar.jsx"></script>
+
 </head>
 
 <body>
-  <h2>React Demo</h2>
   <div id="content"></div>
   <script type="text/jsx">
-  'use strict';
-
-  var MyNavbarInstance = React.createClass ({
-    render: function() {
-
-      var Navbar = ReactBootstrap.Navbar,
-      NavBrand = ReactBootstrap.NavBrand,
-      NavDropdown = ReactBootstrap.NavDropdown,
-      Nav = ReactBootstrap.Nav,
-      NavItem = ReactBootstrap.NavItem,
-      MenuItem = ReactBootstrap.MenuItem;
-    return (
-    <div>
-      <Navbar brand={<a href="#"> React Demo </a>}  toggleNavKey={0} >
-        <Nav right eventKey={0}>
-          <NavItem eventKey={1} href="index.html">Home</NavItem>
-          <NavItem eventKey={2} href="currencies.html">Currencies</NavItem>
-          <NavDropdown eventKey={3} title="Dropdown" id="collapsible-navbar-dropdown">
-            <MenuItem eventKey="1">index</MenuItem>
-            <MenuItem eventKey="2" >Currencies</MenuItem>
-            <MenuItem divider />
-            <MenuItem eventKey="3" >Currencies again</MenuItem>
-          </NavDropdown>
-        </Nav>
-      </Navbar>
-      </div>
-    );
-    }
-  });
 
   React.render(
     <MyNavbarInstance />,
