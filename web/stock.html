@@ -14,6 +14,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react-bootstrap/0.25.1/react-bootstrap.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script src="https://fb.me/react-dom-0.14.0.js"></script>
+<script src="js/utils/timeConverter.js"></script>
 
     <script type="text/jsx" src="components/stocks/stocklist.jsx"></script>
     <script type="text/jsx" src="components/stocks/stock.jsx"></script>
@@ -34,7 +35,7 @@
         <div id="content">
             <div id="navbar">
                 <script type="text/jsx">
-                    React.render(
+                    ReactDOM.render(
                         <MyNavbarInstance/>,
                         document.getElementById('navbar')
                     );
@@ -44,7 +45,7 @@
                 <div id="search" class="searchView pull-left" style="width:80%; ">
                     <div style="margin-left: auto; margin-right: auto; display: inline-block">
                         <script type="text/jsx">
-                            React.render(
+                            ReactDOM.render(
                                 <StockSearch/>,
                                 document.getElementById('search')
                             );
@@ -52,21 +53,50 @@
                     </div>
                 </div>
                 
-                <div id="comments" class="chatView pull-left" style="width:20%;">
+                <div id="chat" class="chatView pull-left" style="width:20%;">
                     <script type="text/jsx">
-                        React.render(
+                        ReactDOM.render(
                             <CommentBox url="comments.json" pollInterval={1000}/>, 
-                            document.getElementById('comments')
+                            document.getElementById('chat')
                         );
                     </script>
                 </div>
                 
                 
             </div>
-            <div id="none" class="commentView">
-                    <hr/>
-                    <p>PLACEHOLDER</p>
+            <hr/>
+            <div id="comments" class="commentView">
+                    <script type="text/jsx">
+                        ReactDOM.render(
+                            <CommentBox url="comments.json" pollInterval={1000}/>, 
+                            document.getElementById('comments')
+                        );
+                    </script>
+            </div>
+            <div id="TEST">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3>User Comment Example</h3>
+                </div><!-- /col-sm-12 -->
+            </div><!-- /row -->
+            <div class="row">
+                <div class="col-sm-1">
+
+                </div><!-- /col-sm-1 -->
+
+                <div class="col-sm-9">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <span class="text-muted">This site is awesome!</span>
+                            <span class="text-muted pull-right"  id="demo"><script>document.getElementById("demo").innerHTML = timeDifference(new Date(), new Date(1000000000000));</script></span> <span class="pull-right text-muted glyphicon glyphicon-time" ></span>
+                        </div>
+                    </div><!-- /panel panel-default -->
+                </div><!-- /col-sm-5 -->
+                
             </div>
         </div>
+            </div>
+            </div>
   </body>
 </html>
