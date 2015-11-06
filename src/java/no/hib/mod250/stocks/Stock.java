@@ -77,7 +77,7 @@ public class Stock {
         }
     }
     
-    public String generateJsonString() {
+    public String generateJsonArrayString() {
         JsonArrayBuilder ab = Json.createArrayBuilder().add(generateJson());
         return Json.createObjectBuilder().add("resources", ab).build().toString();
     }

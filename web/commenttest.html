@@ -2,16 +2,25 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>React Tutorial</title>
-    <!-- Not present in the tutorial. Just for basic styling. -->
+    <title>Testing 123</title>
+    
     <link rel="stylesheet" href="css/base.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.0/react.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.css" />
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.6.15/browser.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.2/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/JSXTransformer.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-bootstrap/0.25.1/react-bootstrap.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://fb.me/react-dom-0.14.0.js"></script>
+    
+    <script type="text/jsx" src="components/stocks/topstocks.jsx"></script>
   </head>
 <body>
     <div id="content"></div>
+    <div id="topstocks"></div>
     <script type="text/babel">
 
       var CommentBox = React.createClass({
@@ -51,6 +60,12 @@
       React.render(
           <CommentBox />,
           document.getElementById('content')
+      )
+    </script>
+    <script type="text/jsx">
+        React.render(
+          <TopStocks url="REST/stocks/multi/" pollInterval={10000} />,
+          document.getElementById('topstocks')
       )
     </script>
   </body>

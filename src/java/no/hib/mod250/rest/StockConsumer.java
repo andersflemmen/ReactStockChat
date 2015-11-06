@@ -6,18 +6,15 @@
 package no.hib.mod250.rest;
 
 import java.io.StringReader;
-import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
-import javax.json.JsonWriter;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
@@ -35,42 +32,64 @@ public class StockConsumer {
 
     private Calendar lastCurrencyRequest;
     private Calendar lastStockRequest;
-    
-    private List<Stock> currencyData;
+
+    private final List<Stock> currencyData;
     private String currencyDataString;
-    
+
     private final String ALL_CURRENCIES = "http://finance.yahoo.com/webservice/v1/symbols/allcurrencies/quote?format=json&view=detail";
     private final String STOCK_START = "http://finance.yahoo.com/webservice/v1/symbols/";
     private final String STOCK_END = "/quote?format=json&view=detail";
-    
-    private Map<String, Stock> stockMap;
-    
-    private int numberOfSearches = 0;
+    private final String STOCK_EXCHANGES = "^IXIC,^AMZI,^DJI,^GSPC,^OSEAX";
+    private final String[] EXCHANGE_NAMES = {"NASDAQ", "New York", "Dow Jones", "S&P 500", "Oslo"};
+
+    private final Map<String, Stock> stockMap;
 
     public StockConsumer() {
-        stockMap = new HashMap<String, Stock>();
-        
+        stockMap = new HashMap<>();
+
         client = ClientBuilder.newClient();
         currencyTarget = client.target(ALL_CURRENCIES);
 
         lastCurrencyRequest = Calendar.getInstance();
-        
+
         currencyData = new ArrayList<>();
         initializeCurrencies();
     }
-    
+
     public String getStock(String symbol) {
-        numberOfSearches++;
-        
         if (stockMap.containsKey(symbol)) {
             if (lastStockRequest == null || lastStockRequest.getTimeInMillis() + 10000
                     < Calendar.getInstance().getTimeInMillis()) {
-                updateAllStocks();    
+                updateAllStocks();
             }
-            return stockMap.get(symbol).generateJsonString();
+            return stockMap.get(symbol.toLowerCase()).generateJsonArrayString();
         }
-        
-        return getSingleStock(symbol);
+
+        return fetchSingleStock(symbol);
+    }
+
+    public String getMultipleStocks(String symbolString) {
+        String[] symbolArray = symbolString.split(",");
+        JsonArrayBuilder ab = Json.createArrayBuilder();
+
+        if (lastStockRequest == null || lastStockRequest.getTimeInMillis() + 10000
+                < Calendar.getInstance().getTimeInMillis()) {
+            updateAllStocks();
+        }
+
+        for (String s : symbolArray) {
+
+            String result = "";
+
+            if (!stockMap.containsKey(s)) {
+                result = fetchSingleStock(s);
+            }
+            if (result != null) {
+                ab = ab.add(stockMap.get(s.toLowerCase()).generateJson());
+            }
+        }
+
+        return Json.createObjectBuilder().add("resources", ab).build().toString();
     }
 
     public String getAllCurrencies() {
@@ -84,83 +103,85 @@ public class StockConsumer {
 
     private void updateAllCurrencies() {
         String result = currencyTarget.request(MediaType.APPLICATION_JSON).get(String.class);
-        
+
         JsonArray array = Json.createReader(new StringReader(result)).readObject()
                 .getJsonObject("list").getJsonArray("resources");
-        
+
         for (int i = 0; i < array.size(); i++) {
             JsonObject currency = array.getJsonObject(i).getJsonObject("resource").getJsonObject("fields");
             currencyData.get(i).updateFromJson(currency);
         }
-        
+
         generateCurrencyDataString();
     }
-    
+
     private void updateAllStocks() {
         StringBuilder stocks = new StringBuilder();
-        
-        stockMap.entrySet().stream().forEach((entry) -> {
-            stocks.append(entry.getKey()).append(",");
-        });
-        
-        WebTarget stockTarget = client.target(STOCK_START + stocks.toString() + STOCK_END);
-        
-        String result = stockTarget.request(MediaType.APPLICATION_JSON).get(String.class);
-        
-        JsonArray array = Json.createReader(new StringReader(result)).readObject()
-                .getJsonObject("list").getJsonArray("resources");
-        
-        for (int i = 0; i < array.size(); i++) {
-            JsonObject obj = array.getJsonObject(i);
-            
-            JsonObject fields = obj.getJsonObject("resource").getJsonObject("fields");
-            stockMap.get(fields.getString("symbol")).updateFromJson(fields);
+
+        if (stockMap.size() > 0) {
+            stockMap.entrySet().stream().forEach((entry) -> {
+                stocks.append(entry.getKey()).append(",");
+            });
+
+            WebTarget stockTarget = client.target(STOCK_START + stocks.toString() + STOCK_END);
+
+            String result = stockTarget.request(MediaType.APPLICATION_JSON).get(String.class);
+
+            JsonArray array = Json.createReader(new StringReader(result)).readObject()
+                    .getJsonObject("list").getJsonArray("resources");
+
+            for (int i = 0; i < array.size(); i++) {
+                JsonObject obj = array.getJsonObject(i);
+
+                JsonObject fields = obj.getJsonObject("resource").getJsonObject("fields");
+                stockMap.get(fields.getString("symbol").toLowerCase()).updateFromJson(fields);
+            }
         }
     }
-    
-    private String getSingleStock(String symbol) {
+
+    private String fetchSingleStock(String symbol) {
         WebTarget stockTarget = client.target(STOCK_START + symbol + STOCK_END);
-        
+
         String result = stockTarget.request(MediaType.APPLICATION_JSON).get(String.class);
-        
+
         JsonArray array = Json.createReader(new StringReader(result)).readObject()
                 .getJsonObject("list").getJsonArray("resources");
-        
+
         if (array.size() > 0) {
             Stock s = new Stock();
             s.updateFromJson(array.getJsonObject(0).getJsonObject("resource").getJsonObject("fields"));
-        
-            stockMap.put(symbol, s);
-            
-            return s.generateJsonString();
+
+            stockMap.put(symbol.toLowerCase(), s);
+
+            return s.generateJsonArrayString();
         }
-        
+
         return null;
     }
-    
+
     private void initializeCurrencies() {
         String result = currencyTarget.request(MediaType.APPLICATION_JSON).get(String.class);
-        
+
         JsonArray array = Json.createReader(new StringReader(result)).readObject()
                 .getJsonObject("list").getJsonArray("resources");
-        
+
         for (int i = 0; i < array.size(); i++) {
             JsonObject currency = array.getJsonObject(i).getJsonObject("resource").getJsonObject("fields");
             Stock s = new Stock();
             s.updateFromJson(currency);
             currencyData.add(s);
         }
-        
+
         generateCurrencyDataString();
     }
-    
+
     private void generateCurrencyDataString() {
         JsonArrayBuilder ab = Json.createArrayBuilder();
-        
+
         for (Stock s : currencyData) {
             ab = ab.add(s.generateJson());
         }
-        
+
         currencyDataString = Json.createObjectBuilder().add("resources", ab).build().toString();
     }
 }

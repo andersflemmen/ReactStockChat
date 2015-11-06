@@ -23,24 +23,43 @@ import javax.ws.rs.Produces;
 @Path("stocks")
 @Lock(LockType.WRITE)
 public class StockFacadeREST {
-    
+
     private final StockConsumer sc;
-    
+
     public StockFacadeREST() {
         sc = new StockConsumer();
     }
-    
+
     @GET
     @Path("allCurrencies")
     @Produces({"application/json"})
     public String countREST() {
         return sc.getAllCurrencies();
     }
-    
+
     @GET
     @Path("single/{symbol}")
     @Produces({"application/json"})
     public String getSingleStock(@PathParam("symbol") String symbol) {
-        return sc.getStock(symbol);
+        String result = sc.getStock(symbol);
+
+        if (result == null) {
+            return "";
+        }
+
+        return result;
+    }
+
+    @GET
+    @Path("multi/{symbols}")
+    @Produces({"application/json"})
+    public String getMultipleStocks(@PathParam("symbols") String symbols) {
+        String result = sc.getMultipleStocks(symbols);
+
+        if (result == null) {
+            return "";
+        }
+
+        return result;
     }
 }
