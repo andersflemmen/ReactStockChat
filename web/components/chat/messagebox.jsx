@@ -1,5 +1,5 @@
    var CommentBox = React.createClass({
-           
+
            loadCommentsFromServer: function(){
              $.ajax({
                 url: 'REST/messages/last',
@@ -11,7 +11,7 @@
                 error: function(xhr, status, err){
                     console.error(this.props.url, status, err.toString());
                 }.bind(this)
-             });  
+             });
          },
          handleCommentSubmit: function(comment){
              var comments = this.state.data;
@@ -25,15 +25,15 @@
                type: 'POST',
                data: data,
                success: function(){
-             
+
                }.bind(this),
                error: function(xhr, status, err){
                    console.error(this.props.url, status, err.toString());
                }.bind(this)
-           }); 
+           });
          },
            getInitialState: function() {
-             return {data: []};  
+             return {data: []};
            },
            componentDidMount: function(){
             this.loadCommentsFromServer();
@@ -47,5 +47,5 @@
                 <CommentForm onCommentSubmit={this.handleCommentSubmit} />
                 </div>
              );
-          } 
+          }
        });
