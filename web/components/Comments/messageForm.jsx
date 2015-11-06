@@ -6,7 +6,7 @@ var CommentForm = React.createClass({
            if(!text || !author){
                return;
            }
-           this.props.onCommentSubmit({username: author, message: text});
+           this.props.onCommentSubmit({username: author, message: text, symbol: symbol});
            this.refs.author.value = '';
            this.refs.text.value = '';
            return;
