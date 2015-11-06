@@ -1,12 +1,16 @@
 var CommentBox = React.createClass({
 
+
         loadCommentsFromServer: function(){
           $.ajax({
-             url: 'REST/comments/get/GOOG',
+             symbol: this.props.symbol,
+             url: 'REST/comments/get/' + symbol,
              dataType: 'json',
              cache: false,
              success: function(data){
+               console.log('url: ' +url)
                  this.setState({data: data});
+
              }.bind(this),
              error: function(xhr, status, err){
                 console.error("error in load from server")
@@ -15,16 +19,17 @@ var CommentBox = React.createClass({
           });
       },
       handleCommentSubmit: function(comment){
-        /**  var comments = this.state.data;
+          var comments = this.state.data;
           var newComments = comments.concat([comment]);
           this.setState({data: newComments});
           var data = JSON.stringify(comment);
-          */
+
+          /*
           var username = "test"
           var message = "testMessage"
           var symbol = "GOOG"
           var data = JSON.stringify({username: username, message: message, symbol: symbol});
-
+          */
 
         $.ajax({
             url: 'REST/comments/new/',
