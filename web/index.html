@@ -23,25 +23,40 @@
   <script  type="text/jsx" src="components/comments/messageForm.jsx"></script>
   <script  type="text/jsx" src="components/comments/messageList.jsx"></script>
 
+  <script type="text/jsx" src="components/stocks/stocklist.jsx"></script>
+  <script type="text/jsx" src="components/stocks/stock.jsx"></script>
+  <script type="text/jsx" src="components/stocks/stockbox.jsx"></script>
+  <script type="text/jsx" src="components/stocks/stocksearch.jsx"></script>
+
 </head>
 
 <body>
   <div id="navbar"></div>
+  <div id="stock"></div>
   <div id="comment"></div>
+
+
 
   <script type="text/jsx">
 
+ var symbol = 'goog';
+
   React.render(
     <MyNavbarInstance />,
-     document.getElementById("navbar")
-   );
+    document.getElementById("navbar")
+  );
 
-   React.render(
-     <CommentBox />,
-     document.getElementById("comment")
-   );
+  React.render(
+    <StockSearch/>,
+    document.getElementById('stock')
+  );
 
-  </script>
+React.render(
+<CommentBox symbol={symbol} />,
+document.getElementById("comment")
+);
+
+</script>
 
 </body>
 </html>

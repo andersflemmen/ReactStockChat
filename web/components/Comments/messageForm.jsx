@@ -10,6 +10,7 @@ var CommentForm = React.createClass({
            this.refs.author.value = '';
            this.refs.text.value = '';
            return;
+
        },
 
        render: function() {
