@@ -41,9 +41,12 @@
                     );
                 </script>
             </div>
-            <div class="chatAndStock" style="display: inline-block; width:100%; " >
-                <div id="search" class="searchView pull-left" style="width:80%; ">
-                    <div style="margin-left: auto; margin-right: auto; display: inline-block">
+            <div class="row">
+                <div class="col-md-1">
+                    <!--TEST-->
+                </div><!-- /col-sm-1 -->
+                <div id="search" class="searchView col-md-4">
+                    <div >
                         <script type="text/jsx">
                             ReactDOM.render(
                                 <StockSearch/>,
@@ -53,7 +56,11 @@
                     </div>
                 </div>
                 
-                <div id="chat" class="chatView pull-left" style="width:20%;">
+                <div class="col-md-2">
+                    <!--TEST-->
+                </div><!-- /col-sm-1 -->
+                
+                <div id="chat" class="chatView col-md-4" >
                     <script type="text/jsx">
                         ReactDOM.render(
                             <CommentBox url="comments.json" pollInterval={1000}/>, 
@@ -61,18 +68,33 @@
                         );
                     </script>
                 </div>
-                
+                <div class="col-md-1">
+                    <!--TEST-->
+                </div><!-- /col-sm-1 -->
                 
             </div>
             <hr/>
-            <div id="comments" class="commentView">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3>Comments: </h3>
+                </div><!-- /col-sm-12 -->
+            </div><!-- /row -->
+            <div class="row">
+                <div class="col-sm-1">
+
+                </div><!-- /col-sm-1 -->
+                
+                <div id="comments" class="commentView col-sm-9">
                     <script type="text/jsx">
                         ReactDOM.render(
                             <CommentBox url="comments.json" pollInterval={1000}/>, 
                             document.getElementById('comments')
                         );
                     </script>
+                </div>
             </div>
+            
+            
             <div id="TEST">
         <div class="container">
             <div class="row">
