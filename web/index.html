@@ -40,22 +40,31 @@
 
   <script type="text/jsx">
 
- var symbol = 'GOOG';
+(function() {
 
-  React.render(
+  var symbol = 'GOOG';
+  var loadUrl = 'REST/comments/get/';
+  var postUrl = 'REST/comments/new/';
+
+
+
+  ReactDOM.render(
     <MyNavbarInstance />,
     document.getElementById("navbar")
   );
 
-  React.render(
+  ReactDOM.render(
     <StockSearch/>,
     document.getElementById('stock')
   );
-
-React.render(
-<MessageBox symbol={symbol} />,
+ReactDOM.render(
+<MessageBox loadUrl={loadUrl} postUrl={postUrl} symbol={symbol} />,
 document.getElementById("comment")
 );
+
+}());
+
+
 
 </script>
 

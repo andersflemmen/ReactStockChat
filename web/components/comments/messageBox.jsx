@@ -1,9 +1,8 @@
 var MessageBox = React.createClass({
-
         loadMessagesFromServer: function(){
           $.ajax({
-             symbol: this.props.symbol,
-             url: 'REST/comments/get/' + symbol,
+
+             url: this.props.loadUrl + this.props.symbol,
              dataType: 'json',
              cache: false,
              success: function(data){
@@ -24,7 +23,7 @@ var MessageBox = React.createClass({
           var data = JSON.stringify(message);
 
         $.ajax({
-            url: 'REST/comments/new/',
+            url: this.props.postUrl,
             contentType: 'application/json; charset=utf-8',
             dataType: 'json',
             type: 'POST',
@@ -37,7 +36,7 @@ var MessageBox = React.createClass({
             }.bind(this)
         });
       },
-        getInitialState: function() {
+        getInitialState: function(){
           return {data: []};
         },
         componentDidMount: function(){

@@ -6,7 +6,7 @@ var MessageForm = React.createClass({
            if(!text || !author){
                return;
            }
-           this.props.onMessageSubmit({username: author, message: text, symbol: symbol});
+           this.props.onMessageSubmit({username: author, message: text});
            this.refs.author.value = '';
            this.refs.text.value = '';
            return;
