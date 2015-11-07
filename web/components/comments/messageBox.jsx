@@ -17,17 +17,11 @@ var MessageBox = React.createClass({
           });
       },
       handleMessageSubmit: function(message){
+          message.symbol = this.props.symbol;
           var messages = this.state.data;
           var newMessages = messages.concat([message]);
           this.setState({data: newMessages});
           var data = JSON.stringify(message);
-
-          /*
-          var username = "test"
-          var message = "testMessage"
-          var symbol = "GOOG"
-          var data = JSON.stringify({username: username, message: message, symbol: symbol});
-          */
 
         $.ajax({
             url: 'REST/comments/new/',
