@@ -1,7 +1,6 @@
-var CommentBox = React.createClass({
+var MessageBox = React.createClass({
 
-
-        loadCommentsFromServer: function(){
+        loadMessageFromServer: function(){
           $.ajax({
              symbol: this.props.symbol,
              url: 'REST/comments/get/' + symbol,
@@ -12,26 +11,19 @@ var CommentBox = React.createClass({
 
              }.bind(this),
              error: function(xhr, status, err){
-                console.error("error in load from server")
+                 console.error("error in load from server")
                  console.error(this.props.url, status, err.toString());
              }.bind(this)
           });
       },
-      handleCommentSubmit: function(comment){
+      handleMessageSubmit: function(message){
 
           symbol: this.props.symbol;
-          comment.symbol = symbol;
-          var comments = this.state.data;
-          var newComments = comments.concat([comment]);
-          this.setState({data: newComments});
-          var data = JSON.stringify(comment);
-
-          /*
-          var username = "test"
-          var message = "testMessage"
-          var symbol = "GOOG"
-          var data = JSON.stringify({username: username, message: message, symbol: symbol});
-          */
+          message.symbol = symbol;
+          var messages = this.state.data;
+          var newMessages = messages.concat([message]);
+          this.setState({data: newMessages});
+          var data = JSON.stringify(message);
 
         $.ajax({
             url: 'REST/comments/new/',
@@ -51,15 +43,15 @@ var CommentBox = React.createClass({
           return {data: []};
         },
         componentDidMount: function(){
-         this.loadCommentsFromServer();
-         setInterval(this.loadCommentsFromServer, this.props.pollInterval);
+         this.loadMessageFromServer();
+         setInterval(this.loadMessageFromServer, this.props.pollInterval);
         },
        render: function() {
            return(
-             <div className="commentBox">
-             <h1>Comments</h1>
-             <CommentList data={this.state.data} />
-             <CommentForm onCommentSubmit={this.handleCommentSubmit} />
+             <div className="messageBox">
+             <h3>Messages</h3>
+             <MessageList data={this.state.data} />
+             <MessageForm onMessageSubmit={this.handleMessageSubmit} />
              </div>
           );
        }

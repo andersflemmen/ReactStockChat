@@ -1,16 +1,16 @@
-var CommentList = React.createClass({
+var MessageList = React.createClass({
      render: function() {
-         var commentNodes = this.props.data.map(function (comment){
+         var messageNodes = this.props.data.map(function (m){
             return (
-             <Comment author={comment.username}>
-             {comment.message}
-             </Comment>
+             <Message author={m.username}>
+             {m.message}
+             </Message>
           );
          });
 
          return (
-            <ul className="commentList">
-            {commentNodes}
+            <ul className="messageList">
+            {messageNodes}
             </ul>
           );
      }
