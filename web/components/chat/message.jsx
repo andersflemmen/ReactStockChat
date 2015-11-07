@@ -1,18 +1,22 @@
-     var Comment = React.createClass({
-           rawMarkup: function() {
-             var rawMarkup = marked(this.props.children.toString(), {sanitize : true});
-             return { __html: rawMarkup };
-           },
+     var Message = React.createClass({
+       componentDidMount: function() {
+        this.refs.message.scrollIntoView('false');
+    },
               render: function() {
+   var date = (new Date(this.props.postedTime)).toLocaleString();
                  return(
-                  <li className="comment">
-                    <b className="commentAuthor">
-                      {this.props.author}
-                    </b>
+                  <li className="message" ref="message">
+                  
+                            
+                    <span title={date} className="messageTime"  >
+                        <b className="commentAuthor">
+                             {this.props.author}
+                        </b>
+                    </span>
                     <span>: {this.props.children} </span>
                   
                    </li>
-                  //  <span dangerouslySetInnerHTML={this.rawMarkup()} /> 
+               
               );
            }
        });

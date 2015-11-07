@@ -21,19 +21,26 @@ and open the template in the editor.
     <script src="components/chat/messagebox.jsx" type="text/jsx"></script>
     <script src="components/chat/messageform.jsx" type="text/jsx"></script>
     <script src="components/chat/messagelist.jsx" type="text/jsx"></script>
+    <script src="components/chat/login.jsx" type="text/jsx"></script>
+    
+    <link rel="stylesheet" href="css/style.css" type="text/css" />
     </head>
     <body>
-        <div id="content"></div>
+        <div id="content" ></div>
         
         <script type="text/jsx">
        
+      var loggedInAs;
       
-      
-       
+
   
+      
+     console.warn('May not be safe') 
+      
        
-       ReactDOM.render(
-               <CommentBox url="comments.json" pollInterval={1000}/>, 
+      
+       React.render(
+               <Login/>, 
                document.getElementById('content')
                );
        

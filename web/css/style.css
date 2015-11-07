@@ -1,0 +1,52 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 06.nov.2015, 13:04:55
+    Author     : Leif Arne
+*/
+
+*{ font-family: 'Open Sans'; 
+   box-sizing: border-box;
+ }
+ .messageBox {
+     width: 400px;
+     height: 380px;
+     border: 2px solid #ddd;
+ }
+ 
+ .messageBox > .chatHeader {
+     width: 100%;
+     background: white;
+     padding: 5px;
+     border-bottom: 1px solid #ddd;
+ }
+ .messageBox > .chatHeader h3 {
+     margin: 0;
+     padding: 0;
+    
+     font-weight: 300;
+     color: #333;
+ }
+  .messageBox > .messageList {
+    height: 280px;
+    border-bottom: 1px solid #ddd;
+    overflow-y: auto;
+ }
+.messageBox > .chatBottom form input[type='submit']{
+     padding: 6px;
+     background: white;
+     border: 1px solid #ddd;
+     cursor: pointer;
+ }
+.messageBox > .chatBottom form input[type='text']{
+    width: 85%;
+    padding: 3px;
+    padding-left: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin: 5px;
+    height: 30px;
+ }

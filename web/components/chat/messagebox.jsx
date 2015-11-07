@@ -1,4 +1,5 @@
-   var CommentBox = React.createClass({
+
+var MessageBox = React.createClass({
 
            loadCommentsFromServer: function(){
              $.ajax({
@@ -14,9 +15,11 @@
              });
          },
          handleCommentSubmit: function(comment){
+
              var comments = this.state.data;
              var newComments = comments.concat([comment]);
              this.setState({data: newComments});
+
              var data = JSON.stringify(comment);
            $.ajax({
                url: 'REST/messages/new/',
@@ -41,10 +44,16 @@
            },
           render: function() {
               return(
-                <div className="commentBox">
-                <h1>Comments</h1>
-                <CommentList data={this.state.data} />
-                <CommentForm onCommentSubmit={this.handleCommentSubmit} />
+                <div className="messageBox">
+                <div className="chatHeader">
+                <h3>
+                        Hello: {this.props.user}
+                </h3>
+                </div>
+                <MessageList data={this.state.data} />
+                <div className="chatBottom">
+                <MessageForm onCommentSubmit={this.handleCommentSubmit} author={this.props.user} />
+                </div>
                 </div>
              );
           }
