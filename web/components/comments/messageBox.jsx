@@ -8,7 +8,6 @@ var CommentBox = React.createClass({
              dataType: 'json',
              cache: false,
              success: function(data){
-               console.log('url: ' +url)
                  this.setState({data: data});
 
              }.bind(this),
@@ -19,6 +18,9 @@ var CommentBox = React.createClass({
           });
       },
       handleCommentSubmit: function(comment){
+
+          symbol: this.props.symbol;
+          comment.symbol = symbol;
           var comments = this.state.data;
           var newComments = comments.concat([comment]);
           this.setState({data: newComments});
