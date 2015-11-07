@@ -1,29 +1,35 @@
-var MessageBox = React.createClass({
+var CommentBox = React.createClass({
 
-        loadMessageFromServer: function(){
+
+        loadCommentsFromServer: function(){
           $.ajax({
              symbol: this.props.symbol,
              url: 'REST/comments/get/' + symbol,
              dataType: 'json',
              cache: false,
              success: function(data){
+               console.log('url: ' +url)
                  this.setState({data: data});
 
              }.bind(this),
              error: function(xhr, status, err){
-                 console.error("error in load from server")
+                console.error("error in load from server")
                  console.error(this.props.url, status, err.toString());
              }.bind(this)
           });
       },
-      handleMessageSubmit: function(message){
+      handleCommentSubmit: function(comment){
+          var comments = this.state.data;
+          var newComments = comments.concat([comment]);
+          this.setState({data: newComments});
+          var data = JSON.stringify(comment);
 
-          symbol: this.props.symbol;
-          message.symbol = symbol;
-          var messages = this.state.data;
-          var newMessages = messages.concat([message]);
-          this.setState({data: newMessages});
-          var data = JSON.stringify(message);
+          /*
+          var username = "test"
+          var message = "testMessage"
+          var symbol = "GOOG"
+          var data = JSON.stringify({username: username, message: message, symbol: symbol});
+          */
 
         $.ajax({
             url: 'REST/comments/new/',
@@ -43,15 +49,15 @@ var MessageBox = React.createClass({
           return {data: []};
         },
         componentDidMount: function(){
-         this.loadMessageFromServer();
-         setInterval(this.loadMessageFromServer, this.props.pollInterval);
+         this.loadCommentsFromServer();
+         setInterval(this.loadCommentsFromServer, this.props.pollInterval);
         },
        render: function() {
            return(
-             <div className="messageBox">
-             <h3>Messages</h3>
-             <MessageList data={this.state.data} />
-             <MessageForm onMessageSubmit={this.handleMessageSubmit} />
+             <div className="commentBox">
+             <h1>Comments</h1>
+             <CommentList data={this.state.data} />
+             <CommentForm onCommentSubmit={this.handleCommentSubmit} />
              </div>
           );
        }

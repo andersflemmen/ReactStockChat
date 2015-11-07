@@ -1,12 +1,12 @@
-var Message = React.createClass({
+var Comment = React.createClass({
       rawMarkup: function() {
         var rawMarkup = marked(this.props.children.toString(), {sanitize : true});
         return { __html: rawMarkup };
       },
          render: function() {
             return(
-             <li className="message">
-               <b className="messageAuthor">
+             <li className="comment">
+               <b className="commentAuthor">
                  {this.props.author}
                </b>
                <span>: {this.props.children} </span>
