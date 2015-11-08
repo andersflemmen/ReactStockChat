@@ -1,6 +1,7 @@
      var Message = React.createClass({
        componentDidMount: function() {
-        this.refs.message.scrollIntoView('false');
+       var msg = this.refs.message;
+            msg.parentNode.scrollTop = msg.offsetTop;
     },
               render: function() {
    var date = (new Date(this.props.postedTime)).toLocaleString();
