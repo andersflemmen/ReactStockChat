@@ -17,56 +17,14 @@
     <script src="https://fb.me/react-dom-0.14.0.js"></script>
     
     <script type="text/jsx" src="components/stocks/topstocks.jsx"></script>
+    <script type="text/jsx" src="components/stats/statsbox.jsx"></script>
   </head>
 <body>
     <div id="content"></div>
-    <div id="topstocks"></div>
-    <script type="text/babel">
-
-      var CommentBox = React.createClass({
-        handleCommentSubmit: function(e) {
-            e.preventDefault();
-            var username = React.findDOMNode(this.refs.username).value.trim();
-            var message = React.findDOMNode(this.refs.message).value.trim();
-            var data = JSON.stringify({username: username, message: message});
-            
-          $.ajax({
-            url: 'REST/messages/new',
-            contentType: 'application/json; charset=utf-8',
-            dataType: 'json',
-            type: 'POST',
-            data: data,
-            success: function() {
-            }.bind(this),
-            error: function(xhr, status, err) {
-              console.error(this.props.url, status, err.toString());
-            }.bind(this)
-          });
-        },
-        render: function() {
-          return (
-            <div className="commentBox">
-              <h1>Comments</h1>
-              <form className="commentForm" onSubmit={this.handleCommentSubmit}>
-              <input type="text" placeholder="Your name" ref="username" />
-              <input type="text" placeholder="Say something..." ref="message" />
-              <input type="submit" value="Post" />
-            </form>
-            </div>
-          );
-        }
-      });
-
-      <!--React.render(
-          <CommentBox />,
-          document.getElementById('content')
-      )-->
-    </script>
     <script type="text/jsx">
         React.render(
-          <TopStocks url="REST/stocks/multi/" pollInterval={10000} />,
-          document.getElementById('topstocks')
-      )
+                <StatsBox url="REST/stats/all" pollInterval={10000} />,
+                document.getElementById('content'));
     </script>
   </body>
 </html>
