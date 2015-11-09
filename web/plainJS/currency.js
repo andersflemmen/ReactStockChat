@@ -61,7 +61,8 @@ function createStockElement(stock){
   typeLi.innerHTML = "Type: ".bold() + type;
 
   var changeLi = document.createElement("LI");
-  changeLi.className = "list-group-item";
+
+  changeLi.className = chg_percent > 0 ? "list-group-item list-group-item-success" : chg_percent < 0 ? "list-group-item list-group-item-danger" : "list-group-item list-group-item-warning" ;
   changeLi.innerHTML = "Change in %: ".bold() + chg_percent;
 
   firstTdUl.appendChild(priceLi);
@@ -87,15 +88,15 @@ function createStockElement(stock){
 
   var yearHighLi = document.createElement("LI");
   yearHighLi.className = "list-group-item list-group-item list-group-item-success";
-  yearHighLi.innerHTML = "Year High: ".bold() + day_high;
+  yearHighLi.innerHTML = "Year High: ".bold() + year_high;
 
   var yearLowLi = document.createElement("LI");
   yearLowLi.className = "list-group-item list-group-item list-group-item-danger";
-  yearLowLi.innerHTML = "Year low: ".bold() + day_high;
+  yearLowLi.innerHTML = "Year low: ".bold() + year_low;
 
   var change2Li = document.createElement("LI");
-  change2Li.className = "list-group-item list-group-item list-group-item-success";
-  change2Li.innerHTML = "Change: ".bold() + day_high;
+  change2Li.className = change > 0 ? "list-group-item list-group-item-success" : change < 0 ? "list-group-item list-group-item-danger" : "list-group-item list-group-item-warning" ;
+  change2Li.innerHTML = "Change: ".bold() + change;
 
   secondTdUl.appendChild(dayHighLi);
   secondTdUl.appendChild(dayLowLi);
