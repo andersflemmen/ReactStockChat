@@ -34,7 +34,8 @@ var Login = React.createClass( {
          <form className="logoutForm" onSubmit={this.logout}> 
              <input type="submit" value="Logout"/>
          </form>
-           <MessageBox url="comments.json" pollInterval={1000} user={sessionStorage.getItem('username')}/>
+           <MessageBox loadUrl='REST/messages/last' pollInterval={1000} 
+             user={sessionStorage.getItem('username')} postUrl='REST/messages/new/'/>
         </div>
       
 );

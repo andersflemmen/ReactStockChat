@@ -3,14 +3,14 @@ var MessageBox = React.createClass({
 
            loadCommentsFromServer: function(){
              $.ajax({
-                url: 'REST/messages/last',
+                url: this.props.loadUrl,
                 dataType: 'json',
                 cache: false,
                 success: function(data){
                     this.setState({data: data});
                 }.bind(this),
                 error: function(xhr, status, err){
-                    console.error(this.props.url, status, err.toString());
+                    console.error(this.props.loadUrl, status, err.toString());
                 }.bind(this)
              });
          },
@@ -22,7 +22,7 @@ var MessageBox = React.createClass({
 
              var data = JSON.stringify(comment);
            $.ajax({
-               url: 'REST/messages/new/',
+               url: this.props.postUrl,
                contentType: 'application/json; charset=utf-8',
                dataType: 'json',
                type: 'POST',
@@ -31,7 +31,7 @@ var MessageBox = React.createClass({
 
                }.bind(this),
                error: function(xhr, status, err){
-                   console.error(this.props.url, status, err.toString());
+                   console.error(this.props.postUrl, status, err.toString());
                }.bind(this)
            });
          },
