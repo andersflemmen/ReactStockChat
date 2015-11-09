@@ -5,17 +5,20 @@ var Login = React.createClass( {
         };
      },
 
-      handleSubmit: function(){ 
+      handleSubmit: function(event){ 
+        event.preventDefault();
         var input = this.refs.user.value;
         if(input.trim() != ''){
         sessionStorage.username = input;
-     //   this.setState({username: sessionStorage.username});
+        this.setState({username: sessionStorage.username});
         }
         return;
       },
 
-      logout: function(){
+      logout: function(event){
+        event.preventDefault();
         sessionStorage.username = '';
+        this.setState({username: sessionStorage.username});
         return;
 },
 
