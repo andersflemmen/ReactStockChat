@@ -1,12 +1,13 @@
 var StatsBox = React.createClass({
     getStats: function() {
               $.ajax({
-                url: url,
+                url: this.props.url,
                 dataType: 'json',
                 cache: false,
                 success: function(data) {
                     this.setState({
                       stats: data,
+                      top10: data.top_ten_commented
                     });
                 }.bind(this),
                 error: function(xhr, status, err) {
@@ -21,38 +22,37 @@ var StatsBox = React.createClass({
     },
 
     getInitialState: function() {
-        return {stats: []};
+        return {stats: { top_ten_commented: [] }, top10: []};
     },  
 
     render: function() {
+
+        var top10 = this.state.stats.top_ten_commented.map(function(stock) {
+                        return (<li>{stock.symbol} ({stock.count})</li>);
+                    }, this);
 
         return (
             <div className="panel panel-info pull-left stockPanel">
                 <div className="panel-heading">
                     <h3 className="panel-title">
-                        <b>My favorite stocks</b>
+                        <b>Statinator</b>
                     </h3>
                 </div>
-                
-                    <form onSubmit={this.addStock}>
-                            <div className="input-group">
-                              <input type="text" ref="stockInput" className="form-control" placeholder="Enter stock symbol..." />
-                              <span className="input-group-btn">
-                                <button type="button" className="btn btn-primary">Add</button>
-                              </span>
-                            </div>
-                    </form>
-                <table className="table">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Change in %</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {stockNodes}
-                    </tbody>
-                </table>
+                <br />
+                <div>
+                    <ul>
+                        <li>Number of comments: {this.state.stats.num_comments}</li>
+                        <li>Number of comments today: {this.state.stats.num_comments_today}</li>
+                        <li>Number of chat messages: {this.state.stats.num_messages}</li>
+                        <li>Number of chat messages today: {this.state.stats.num_messages_today}</li>
+                        <li>
+                            Most popular stocks (comments):
+                            <ol>
+                                {top10}
+                            </ol>
+                        </li>
+                    </ul>
+                </div>
             </div>
         );
     }
