@@ -33,7 +33,7 @@ var Login = React.createClass( {
       
         else{        
         return(
-        <div>
+        <div className="chatBox">
          <form className="logoutForm" onSubmit={this.logout}> 
              <input type="submit" value="Logout"/>
          </form>
