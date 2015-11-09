@@ -56,14 +56,15 @@ public class MessageFacadeREST extends AbstractFacade<Message> {
     @Path("last")
     @Produces({"application/json"})
     public List<Message> getMessages() {      
-      //  Query q = em.createQuery("SELECT m FROM Message m ORDER BY m.postedTime DESC").setMaxResults(100);
-     Query q = em.createQuery("SELECT m FROM Message m ORDER BY m.postedTime");
-        if(q.getResultList().size() > 100)
-        return q.getResultList().subList(q.getResultList().size() - 100, q.getResultList().size());
-        
-        else
-            
-        return q.getResultList();
+        Query q = em.createQuery("SELECT m FROM Message m ORDER BY m.postedTime");
+
+        List l = q.getResultList();
+     
+        if(q.getResultList().size() > 100) {
+            return l.subList(l.size() - 100, l.size());   
+        } else {
+            return l;
+        }
     }
 
     @Override
