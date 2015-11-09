@@ -93,7 +93,7 @@ var TopStocks = React.createClass({
                             <div className="input-group">
                               <input type="text" ref="stockInput" className="form-control" placeholder="Enter stock symbol..." />
                               <span className="input-group-btn">
-                                <button type="button" className="btn btn-primary"><span className="glyphicon glyphicon-plus"></span></button>
+                                <button type="submit" className="btn btn-primary"><span className="glyphicon glyphicon-plus"></span></button>
                               </span>
                             </div>
                     </form>
