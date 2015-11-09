@@ -16,7 +16,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="https://fb.me/react-dom-0.14.0.js"></script>
 
-    <script src="web/plainJS/currency.js"></script>
+    <script src="plainJS/currency.js"></script>
     <script  type="text/jsx" src="components/navbar/navbar.jsx"></script>
 
   </head>
@@ -29,11 +29,22 @@
             );
         </script>
     </div>
-    <div id="currencies">
-      <script src ="web\plainJS\currency.js"></script>
 
+      <div  id="demo">
+      <script>
 
+      var stock = {
+        "name":"Alphabet Inc.",
+        "symbol":"GOOG","type":"equity",
+        "volume":109014,"utctime":"2015-11-09T14:45:06+0000",
+        "price":730.966187,"day_low":728.100098,
+        "day_high":734.495972,"year_low":486.225,
+        "year_high":739.48,"change":-2.793823,"chg_percent":-0.380754}
+
+      document.getElementById("demo").appendChild(createStockElement(stock));
+      </script>
     </div>
+
 
   </body>
 </html>

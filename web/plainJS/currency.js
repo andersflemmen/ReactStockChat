@@ -17,7 +17,7 @@ function createStockElement(stock){
   var headerDiv = document.createElement("DIV");
   headerDiv.className = "panel-heading";
   var bodyDiv = document.createElement("DIV");
-  bodyDiv = "panel-body";
+  bodyDiv.className = "panel-body";
 
   //heading
   var heading = document.createElement("H3");
