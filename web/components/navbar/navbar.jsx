@@ -16,6 +16,7 @@ var MyNavbarInstance = React.createClass ({
         <NavItem eventKey={3} href="stock.html">Stocks</NavItem>
         <NavItem eventKey={3} href="commenttest.html">Comment test</NavItem>
         <NavItem eventKey={3} href="chat.html">Chat</NavItem>
+        <NavItem eventKey={3} href="currencies-vanillajs.html">currencies-vanillajs</NavItem>
         <NavDropdown eventKey={3} title="Dropdown" id="collapsible-navbar-dropdown">
           <MenuItem eventKey="1">index</MenuItem>
           <MenuItem eventKey="2" >Currencies</MenuItem>
