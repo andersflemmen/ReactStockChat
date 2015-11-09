@@ -41,6 +41,12 @@ var TopStocks = React.createClass({
         }
     },
 
+    removeStock: function(obj) {
+        this.state.stockSet.delete(obj);
+        localStorage.setItem('stockSet', JSON.stringify(Array.from(this.state.stockSet)));
+        this.getStocks();
+    },
+
     componentDidMount: function() {
         setInterval(this.getStocks, this.props.pollInterval);
         this.getStocks();
@@ -65,15 +71,15 @@ var TopStocks = React.createClass({
     },
 
     render: function() {
-
         var stockNodes = this.state.stocks.map(function (stock, index) {
             return (
-                <tr className={(stock.chg_percent > 0 ? "success" : (stock.chg_percent < 0 ? "danger" : "warning")) }>
+                <tr key={stock.symbol} className={(stock.chg_percent > 0 ? "success" : (stock.chg_percent < 0 ? "danger" : "warning")) }>
                     <td>{stock.name}</td> 
                     <td>{stock.chg_percent}%</td>
+                    <td><button onClick={this.removeStock.bind(this, stock.symbol)} className="btn btn-danger" >-</button></td>
                 </tr>
             );
-          });
+          }, this);
 
         return (
             <div className="panel panel-info pull-left stockPanel">
