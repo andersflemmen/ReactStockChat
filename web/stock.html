@@ -5,6 +5,7 @@
     <title>Stock</title>
     <link rel="stylesheet" href="css/base.css" />
     <link rel="stylesheet" href="css/bootstrap.css" />
+    <link rel="stylesheet" href="css/style.css" />
     
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.6.15/browser.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -20,6 +21,8 @@
     <script type="text/jsx" src="components/stocks/stock.jsx"></script>
     <script type="text/jsx" src="components/stocks/stockbox.jsx"></script>
     <script type="text/jsx" src="components/stocks/stocksearch.jsx"></script>
+    <script type="text/jsx" src="components/stocks/topstocks.jsx"></script>
+    
     
     <script src="components/chat/message.jsx" type="text/jsx"></script>
     <script src="components/chat/messagebox.jsx" type="text/jsx"></script>
@@ -29,16 +32,12 @@
  
     <script type="text/jsx" src="components/navbar/navbar.jsx"></script>
     
-      
-    
-    <link rel="stylesheet" href="css/style.css" type="text/css" />
-    
 
   </head>
   <body>
         
                         
-        <div id="content">
+        <div id="content" class="row">
             <div id="navbar">
                 <script type="text/jsx">
                     ReactDOM.render(
@@ -48,25 +47,25 @@
                 </script>
             </div>
             <div class="row">
-                <div class="col-md-1">
-                    <!--TEST-->
-                </div><!-- /col-sm-1 -->
-                <div id="search" class="searchView col-md-4">
-                    <div >
-                        <script type="text/jsx">
-                            ReactDOM.render(
-                                <StockSearch/>,
-                                document.getElementById('search')
-                            );
-                        </script>
-                    </div>
+                <div id="search" class="searchView col-sm-4">
+                    <script type="text/jsx">
+                        ReactDOM.render(
+                            <StockSearch/>,
+                            document.getElementById('search')
+                        );
+                    </script>
                 </div>
                 
-                <div class="col-md-2">
-                    <!--TEST-->
-                </div><!-- /col-sm-1 -->
+                <div id="topStock" class="col-sm-4">
+                    <script type="text/jsx">
+                        ReactDOM.render(
+                            <TopStocks url="REST/stocks/multi/" pollInterval={10000} />,
+                            document.getElementById('topStock')
+                        );
+                    </script>
+                </div>
                 
-                <div id="chat" class="chatView col-md-4" >
+                <div id="chat" class="chatView col-sm-4" >
                     <script type="text/jsx">
                         ReactDOM.render(
                            <Login />, 
@@ -74,32 +73,7 @@
                         );
                     </script>
                 </div>
-                <div class="col-md-1">
-                    <!--TEST-->
-                </div><!-- /col-sm-1 -->
-                
-            </div>
-            <hr/>
-            <div class="row">
-                <div class="col-sm-12">
-                    <h3>Comments: </h3>
-                </div><!-- /col-sm-12 -->
-            </div><!-- /row -->
-            <div class="row">
-                <div class="col-sm-1">
-
-                </div><!-- /col-sm-1 -->
-                
-                <div id="comments" class="commentView col-sm-9">
-                    <script type="text/jsx">
-                        ReactDOM.render(
-                            <CommentBox url="comments.json" pollInterval={1000}/>, 
-                            document.getElementById('comments')
-                        );
-                    </script>
-                </div>
-            </div>
-            
+            </div>            
             
             <div id="TEST">
         <div class="container">
@@ -117,7 +91,7 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <span class="text-muted">This site is awesome!</span>
-                            <span class="text-muted pull-right"  id="demo"><script>document.getElementById("demo").innerHTML = timeDifference(new Date(), new Date(1000000000000));</script></span> <span class="pull-right text-muted glyphicon glyphicon-time" ></span>
+                            <span class="text-muted pull-right"  id="demo"> <script>document.getElementById("demo").innerHTML = timeDifference(new Date(), new Date(1447064325986));</script></span> <span class="pull-right text-muted glyphicon glyphicon-time" ></span>
                         </div>
                     </div><!-- /panel panel-default -->
                 </div><!-- /col-sm-5 -->

@@ -76,7 +76,7 @@ var TopStocks = React.createClass({
                 <tr key={stock.symbol} className={(stock.chg_percent > 0 ? "success" : (stock.chg_percent < 0 ? "danger" : "warning")) }>
                     <td>{stock.name}</td> 
                     <td>{stock.chg_percent}%</td>
-                    <td><button onClick={this.removeStock.bind(this, stock.symbol)} className="btn btn-danger" >-</button></td>
+                    <td><button onClick={this.removeStock.bind(this, stock.symbol)} className="btn btn-danger" ><span className="glyphicon glyphicon-remove"></span></button></td>
                 </tr>
             );
           }, this);
@@ -93,7 +93,7 @@ var TopStocks = React.createClass({
                             <div className="input-group">
                               <input type="text" ref="stockInput" className="form-control" placeholder="Enter stock symbol..." />
                               <span className="input-group-btn">
-                                <button type="button" className="btn btn-primary">Add</button>
+                                <button type="button" className="btn btn-primary"><span className="glyphicon glyphicon-plus"></span></button>
                               </span>
                             </div>
                     </form>
