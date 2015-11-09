@@ -1,4 +1,7 @@
-function createStockElement(stock){
+function createStockElement(){
+
+
+
   var name = stock.name;
   var price = stock.price;
   var symbol = stock.symbol;
@@ -122,5 +125,21 @@ function createStockElement(stock){
   mainDiv.appendChild(headerDiv);
   mainDiv.appendChild(bodyDiv);
 
+
+
  return mainDiv;
+};
+
+function loadCurrenciesFromServer(){
+  $.ajax({
+    url: 'REST/stocks/allCurrencies',
+    dataType: 'json',
+    cache: false,
+    success: function(data) {
+       data.resources;
+    }.bind(this),
+    error: function(xhr, status, err) {
+      console.error(status, err.toString());
+    }
+  })
 };
