@@ -73,7 +73,7 @@ var TopStocks = React.createClass({
     render: function() {
         var stockNodes = this.state.stocks.map(function (stock, index) {
             return (
-                <tr key={stock.symbol} className={(stock.chg_percent > 0 ? "success" : (stock.chg_percent < 0 ? "danger" : "warning")) }>
+                <tr className={(stock.chg_percent > 0 ? "success" : (stock.chg_percent < 0 ? "danger" : "warning")) }>
                     <td>{stock.name}</td> 
                     <td>{stock.chg_percent}%</td>
                     <td><button onClick={this.removeStock.bind(this, stock.symbol)} className="btn btn-danger" ><span className="glyphicon glyphicon-remove"></span></button></td>
