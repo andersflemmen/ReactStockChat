@@ -61,7 +61,9 @@ var CommentBox = React.createClass({
 
               {  this.state.username && ( 
               <div>
-              <Login logout={this.logout} username={this.state.username} logoutText="Change name" /> <br/>
+              <br/>
+              <br/>
+              <Login logout={this.logout} username={this.state.username} logoutText="Change name" /> 
                 <div className="commentForm">
                  <MessageForm onCommentSubmit={this.handleCommentSubmit} author={this.state.username} />
                 </div>
