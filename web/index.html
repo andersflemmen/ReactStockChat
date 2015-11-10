@@ -1,72 +1,146 @@
+<!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <title>React</title>
+  <head>
+    <meta charset="utf-8">
+    <title>Stock</title>
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <link rel="stylesheet" href="css/style.css" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.6.15/browser.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.2/marked.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.0/react.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/JSXTransformer.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-bootstrap/0.25.1/react-bootstrap.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="https://fb.me/react-dom-0.14.0.js"></script>
+<script src="js/utils/timeConverter.js"></script>
+
+    <script type="text/jsx" src="components/stocks/stocklist.jsx"></script>
+    <script type="text/jsx" src="components/stocks/stock.jsx"></script>
+    <script type="text/jsx" src="components/stocks/stockbox.jsx"></script>
+    <script type="text/jsx" src="components/stocks/stocksearch.jsx"></script>
+    <script type="text/jsx" src="components/stocks/topstocks.jsx"></script>
 
 
-  <link rel="stylesheet" href="css/base.css" />
-  <link rel="stylesheet" href="css/bootstrap.css" />
+    <script src="components/chat/message.jsx" type="text/jsx"></script>
+    <script src="components/chat/messagebox.jsx" type="text/jsx"></script>
+    <script src="components/chat/messageform.jsx" type="text/jsx"></script>
+    <script src="components/chat/messagelist.jsx" type="text/jsx"></script>
+    <script src="components/chat/login.jsx" type="text/jsx"></script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.6.15/browser.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.2/marked.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.0/react.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/JSXTransformer.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-bootstrap/0.25.1/react-bootstrap.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-  <script src="https://fb.me/react-dom-0.14.0.js"></script>
+    <script type="text/jsx" src="components/navbar/navbar.jsx"></script>
+
+    <script type="text/jsx" src="components/stats/statsbox.jsx"></script>
 
 
-  <script  type="text/jsx" src="components/navbar/navbar.jsx"></script>
-
-  <script  type="text/jsx" src="components/comments/message.jsx"></script>
-  <script  type="text/jsx" src="components/comments/messageBox.jsx"></script>
-  <script  type="text/jsx" src="components/comments/messageForm.jsx"></script>
-  <script  type="text/jsx" src="components/comments/messageList.jsx"></script>
-
-  <script type="text/jsx" src="components/stocks/stocklist.jsx"></script>
-  <script type="text/jsx" src="components/stocks/stock.jsx"></script>
-  <script type="text/jsx" src="components/stocks/stockbox.jsx"></script>
-  <script type="text/jsx" src="components/stocks/stocksearch.jsx"></script>
-
-</head>
-
-<body>
-  <div id="navbar"></div>
-  <div id="stock"></div>
-  <div id="comment"></div>
+  </head>
+  <body>
 
 
+        <div id="content" class="row">
+            <div id="navbar">
+                <script type="text/jsx">
+                    ReactDOM.render(
+                        <MyNavbarInstance/>,
+                        document.getElementById('navbar')
+                    );
+                </script>
+            </div>
+            <div class="row">
+                <div class="col-sm-1"></div>
 
-  <script type="text/jsx">
+                <div id="search" class="searchView col-sm-5">
+                    <script type="text/jsx">
+                        ReactDOM.render(
+                            <StockSearch/>,
+                            document.getElementById('search')
+                        );
+                    </script>
+                </div>
 
-(function() {
+                <div id="chat" class="chatView col-sm-5" >
+                    <script type="text/jsx">
+                        ReactDOM.render(
+                           <Login />,
+                            document.getElementById('chat')
+                        );
+                    </script>
+                </div>
 
-  var symbol = 'GOOG';
-  var loadUrl = 'REST/comments/get/';
-  var postUrl = 'REST/comments/new/';
+                <div class="col-sm-1"></div>
 
+            </div>
+            <hr/>
+            <div class="row">
 
+                <div class="col-sm-1"></div>
 
-  ReactDOM.render(
-    <MyNavbarInstance />,
-    document.getElementById("navbar")
-  );
+                <div id="topStock" class="col-sm-5">
+                    <script type="text/jsx">
+                        ReactDOM.render(
+                            <TopStocks url="REST/stocks/multi/" pollInterval={10000} />,
+                            document.getElementById('topStock')
+                        );
+                    </script>
+                </div>
 
-  ReactDOM.render(
-    <StockSearch/>,
-    document.getElementById('stock')
-  );
-ReactDOM.render(
-<MessageBox loadUrl={loadUrl} postUrl={postUrl} symbol={symbol} />,
-document.getElementById("comment")
-);
+                <div id="stats" class="col-sm-5">
+                    <script type="text/jsx">
+                        ReactDOM.render(
+                            <StatsBox url="REST/stats/all" pollInterval={10000} />,
+                            document.getElementById('stats')
+                        );
+                    </script>
+                </div>
 
-}());
+                <div class="col-sm-1"></div>
 
+            </div>
+            <hr/>
+            <div id="TEST">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3>User Comment Example</h3>
+                </div><!-- /col-sm-12 -->
+            </div><!-- /row -->
+            <div class="row">
+                <div class="col-sm-1">
 
+                </div><!-- /col-sm-1 -->
 
-</script>
+                <div class="col-sm-9">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <span class="text-muted">This site is awesome!</span>
+                            <span class="text-muted pull-right"  id="1"> <script>document.getElementById("1").innerHTML = timeDifference(new Date(), new Date(1447064325986));</script></span> <span class="pull-right text-muted glyphicon glyphicon-time" style="margin-right: 5px" ></span>
+                        </div>
+                    </div><!-- /panel panel-default -->
+                </div><!-- /col-sm-5 -->
 
-</body>
+            </div>
+            <!-- -->
+            <div class="row">
+                <div class="col-sm-1">
+
+                </div><!-- /col-sm-1 -->
+
+                <div class="col-sm-9">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <span class="text-muted">This site is awesome!</span>
+                            <span class="text-muted pull-right"  id="2"> <script>document.getElementById("2").innerHTML = timeDifference(new Date(), new Date(1447064325986));</script></span> <span class="pull-right text-muted glyphicon glyphicon-time" style="margin-right: 5px" ></span>
+                        </div>
+                    </div><!-- /panel panel-default -->
+                </div><!-- /col-sm-5 -->
+
+            </div>
+            <!-- -->
+
+        </div>
+            </div>
+            </div>
+  </body>
 </html>
