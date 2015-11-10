@@ -12,10 +12,10 @@ var StockSearch = React.createClass({
     },
     render: function(){
         return(
-            <div>
+            <div className="stockPanel">
                 <StockBox url={"REST/stocks/single/" + this.state.value} pollInterval={10000} ref="stockbox" />
                 <form onSubmit={this.submit}>
-                    <div className="input-group stockPanel">
+                    <div className="input-group">
                         <input type="text" ref="inputField" className="form-control" placeholder="Enter stock symbol..." />
                         <span className="input-group-btn">
                             <button type="submit" className="btn btn-primary" ><span className="glyphicon glyphicon-search"></span></button>
