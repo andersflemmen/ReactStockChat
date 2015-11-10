@@ -1,45 +1,25 @@
 var Login = React.createClass( {
- getInitialState: function(){
-      return {
-          username: sessionStorage.username
-        };
-     },
-
-      handleSubmit: function(event){ 
+    login: function(event) {
         event.preventDefault();
         var input = this.refs.user.value;
-        if(input.trim() != ''){
-        sessionStorage.username = input;
-        this.setState({username: sessionStorage.username});
-        }
-        return;
-      },
-
-      logout: function(event){
-        event.preventDefault();
-        sessionStorage.username = '';
-        this.setState({username: sessionStorage.username});
+        this.props.login(input);
         return;
 },
 
 
-    render: function(){
+    render: function(){ 
        
-        if(! this.state.username){
-        return(  <form className="loginForm" onSubmit={this.handleSubmit}>
-                  <input type="text" placeholder="Type in username" ref="user" />
-                  <input type="submit" value="Join chat" />
+        if(! this.props.username){
+        return(  <form className="loginForm" onSubmit={this.login}>
+                  <input type="text" placeholder="Type in name" ref="user" />
+                  <input type="submit" value={this.props.submitText} />
                   </form> );}
       
-        else{        
+        else{       
         return(
-        <div className="chatBox">
-         <form className="logoutForm" onSubmit={this.logout}> 
-             <input type="submit" value="Logout"/>
+         <form className="logoutForm" onSubmit={this.props.logout}> 
+             <input type="submit" value={this.props.logoutText}/>
          </form>
-           <MessageBox loadUrl='REST/messages/last' pollInterval={1000} 
-             user={sessionStorage.getItem('username')} postUrl='REST/messages/new/'/>
-        </div>
       
 );
 }

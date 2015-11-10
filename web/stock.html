@@ -26,6 +26,7 @@
     <script src="components/chat/messageform.jsx" type="text/jsx"></script>
     <script src="components/chat/messagelist.jsx" type="text/jsx"></script>
     <script src="components/chat/login.jsx" type="text/jsx"></script>
+    <script src="components/Comments/commentbox.jsx" type="text/jsx"></script>
  
     <script type="text/jsx" src="components/navbar/navbar.jsx"></script>
     
@@ -45,7 +46,7 @@
                         <MyNavbarInstance/>,
                         document.getElementById('navbar')
                     );
-                </script>
+                </script> 
             </div>
             <div class="row">
                 <div class="col-md-1">
@@ -53,23 +54,24 @@
                 </div><!-- /col-sm-1 -->
                 <div id="search" class="searchView col-md-4">
                     <div >
-                        <script type="text/jsx">
+                        <script type="text/jsx"> 
                             ReactDOM.render(
                                 <StockSearch/>,
                                 document.getElementById('search')
                             );
                         </script>
-                    </div>
-                </div>
-                
+                    </div>  
+                </div> 
+                    
                 <div class="col-md-2">
                     <!--TEST-->
                 </div><!-- /col-sm-1 -->
                 
                 <div id="chat" class="chatView col-md-4" >
                     <script type="text/jsx">
+                        
                         ReactDOM.render(
-                           <Login />, 
+                           <MessageBox loadUrl='REST/messages/last' pollInterval={1000} postUrl='REST/messages/new/' />, 
                             document.getElementById('chat')
                         );
                     </script>
@@ -81,7 +83,7 @@
             </div>
             <hr/>
             <div class="row">
-                <div class="col-sm-12">
+                <div class="col-sm-12"> 
                     <h3>Comments: </h3>
                 </div><!-- /col-sm-12 -->
             </div><!-- /row -->
@@ -89,13 +91,15 @@
                 <div class="col-sm-1">
 
                 </div><!-- /col-sm-1 -->
-                
+                 
                 <div id="comments" class="commentView col-sm-9">
                     <script type="text/jsx">
+                        /*
                         ReactDOM.render(
-                            <CommentBox url="comments.json" pollInterval={1000}/>, 
+                            <CommentBox loadUrl='REST/messages/last' pollInterval={1000} postUrl='REST/messages/new/'/>, 
                             document.getElementById('comments')
                         );
+                        */
                     </script>
                 </div>
             </div>

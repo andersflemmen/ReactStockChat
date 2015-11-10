@@ -50,3 +50,22 @@ and open the template in the editor.
     margin: 5px;
     height: 30px;
  }
+
+ .messageBox  > .chatHeader > .loginForm form input[type='submit']{
+     padding: 6px;
+     background: white;
+     border: 1px solid #ddd;
+     cursor: pointer;
+ }
+ .messageBox > .chatHeader >  .loginForm form input[type='text']{
+     width: 85%;
+    padding: 3px;
+    padding-left: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin: 5px;
+    height: 30px;
+ }
+ 
+ 
+ 

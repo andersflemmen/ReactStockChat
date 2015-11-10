@@ -1,6 +1,4 @@
-
-var MessageBox = React.createClass({
-
+var CommentBox = React.createClass({
            loadCommentsFromServer: function(){
              $.ajax({
                 url: this.props.loadUrl,
@@ -15,10 +13,6 @@ var MessageBox = React.createClass({
              });
          },
          handleCommentSubmit: function(comment){
-
-             var comments = this.state.data;
-             var newComments = comments.concat([comment]);
-             this.setState({data: newComments});
 
              var data = JSON.stringify(comment);
            $.ajax({
@@ -36,21 +30,21 @@ var MessageBox = React.createClass({
            });
          },
            getInitialState: function() {
-             return {data: [], username: sessionStorage.username};
+             return {data: [], username: sessionStorage.user};
            },
           login: function(user){ 
             var input = user;
             if(input.trim() != ''){
-            sessionStorage.username = input;
-            this.setState({username: sessionStorage.username});
+            sessionStorage.user = input;
+            this.setState({username: sessionStorage.user});
             }
             return;
       },
 
             logout: function(event){
             event.preventDefault();
-            sessionStorage.username = '';
-            this.setState({username: sessionStorage.username});
+            sessionStorage.user = '';
+            this.setState({username: sessionStorage.user});
             return;
 },
            
@@ -58,28 +52,23 @@ var MessageBox = React.createClass({
             this.loadCommentsFromServer();
             setInterval(this.loadCommentsFromServer, this.props.pollInterval);
            },
+
           render: function() {
               return(
-              <div className="chat">
-{this.state.username && (<Login logout={this.logout} logoutText="Logout" username={this.state.username}/>)}
-                <div className="messageBox">
-           
-                <div className="chatHeader">
-                {this.state.username && ( <h3>
-                        Hello: {this.state.username} 
-                </h3>) }
+                <div className="commentBox">
                 
-                {!this.state.username && (<Login login={this.login} submitText="Join Chat"/>)}
-                </div>
-                <MessageList data={this.state.data}/>
-                <div className="chatBottom">
-                { this.state.username && (
-                <MessageForm onCommentSubmit={this.handleCommentSubmit} author={this.props.user} />
-                )}
+              { !this.state.username && (<Login login={this.login} submitText="Set name" />)}
 
-                
+              {  this.state.username && ( 
+              <div>
+              <Login logout={this.logout} username={this.state.username} logoutText="Change name" /> <br/>
+                <div className="commentForm">
+                 <MessageForm onCommentSubmit={this.handleCommentSubmit} author={this.state.username} />
                 </div>
-                </div>
+                </div>)
+                }
+                <MessageList data={this.state.data} />
+            
                 </div>
              );
           }

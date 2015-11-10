@@ -18,6 +18,10 @@ var StockSearch = React.createClass({
                     <input type="submit" value="Request" />
                 </form>
                 <StockBox url={"REST/stocks/single/" + this.state.value} pollInterval={10000} ref="stockbox" />
+ 
+                     
+             <CommentBox loadUrl={"REST/comments/get/" + this.state.value} pollInterval={1000} postUrl={"REST/comments/new/" + this.state.value}/>
+                     
             </div>
         );
     }
