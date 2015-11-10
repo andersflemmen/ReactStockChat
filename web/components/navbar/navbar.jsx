@@ -13,15 +13,10 @@ var MyNavbarInstance = React.createClass ({
       <Nav right eventKey={0}>
         <NavItem eventKey={1} href="index.html">Home</NavItem>
         <NavItem eventKey={2} href="currencies.html">Currencies</NavItem>
-        <NavItem eventKey={3} href="stock.html">Stocks</NavItem>
         <NavItem eventKey={3} href="commenttest.html">Comment test</NavItem>
         <NavItem eventKey={3} href="chat.html">Chat</NavItem>
-        <NavDropdown eventKey={3} title="Dropdown" id="collapsible-navbar-dropdown">
-          <MenuItem eventKey="1">index</MenuItem>
-          <MenuItem eventKey="2" >Currencies</MenuItem>
-          <MenuItem divider />
-          <MenuItem eventKey="3" >Currencies again</MenuItem>
-        </NavDropdown>
+        <NavItem eventKey={3} href="currencies-vanillajs.html">Currencies vanillajs</NavItem>
+          <NavItem eventKey={3} href="vanilla-vs-react.html">Vanilla vs React</NavItem>
       </Nav>
     </Navbar>
     </div>

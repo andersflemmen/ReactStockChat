@@ -8,9 +8,6 @@ and open the template in the editor.
     Author     : Leif Arne
 */
 
-*{ font-family: 'Open Sans'; 
-   box-sizing: border-box;
- }
  .messageBox {
      width: 400px;
      height: 380px;

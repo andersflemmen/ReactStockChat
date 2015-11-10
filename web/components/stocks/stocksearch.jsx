@@ -12,11 +12,7 @@ var StockSearch = React.createClass({
     },
     render: function(){
         return(
-            <div>
-                <form onSubmit={this.submit}>
-                    <input type="text" name="search" ref="inputField"/>
-                    <input type="submit" value="Request" />
-                </form>
+            <div className="stockPanel">
                 <StockBox url={"REST/stocks/single/" + this.state.value} pollInterval={10000} ref="stockbox" />
  
                      

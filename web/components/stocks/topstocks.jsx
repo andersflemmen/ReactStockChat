@@ -2,7 +2,8 @@ var TopStocks = React.createClass({
     getStocks: function() {
         if (this.state.stockSet.size > 0) {
             var url = this.props.url;
-            this.state.stockSet.forEach(
+            var tempSet = new Set(this.state.stockSet);
+            tempSet.forEach(
                 function(value) {
                     url = url + value + ',';
                 }
@@ -17,17 +18,17 @@ var TopStocks = React.createClass({
                       stocks: data.resources,
                     });
 
-                    if (this.state.stockSet.size !== this.state.stocks.length) {
+                    if (tempSet.size !== this.state.stocks.length) {
 
                         var arraySet = new Set(this.state.stocks.map(function(stock) {
                             return stock.symbol.toUpperCase();
                         }));
 
-                        var stockSet = this.state.stockSet;
+                        
 
-                        stockSet.forEach(function(value) {
+                        tempSet.forEach(function(value) {
                             if (!arraySet.has(value)) {
-                                stockSet.delete(value);
+                                this.state.stockSet.delete(value);
                             }
                         });
 
@@ -76,8 +77,8 @@ var TopStocks = React.createClass({
                 <tr className={(stock.chg_percent > 0 ? "success" : (stock.chg_percent < 0 ? "danger" : "warning")) }>
                     <td>{stock.name}</td> 
                     <td>{stock.chg_percent}%</td>
-                    <td><button onClick={this.removeStock.bind(this, stock.symbol)} className="btn btn-danger" >-</button></td>
-                </tr>   
+                    <td><button onClick={this.removeStock.bind(this, stock.symbol)} className="btn btn-danger" ><span className="glyphicon glyphicon-remove"></span></button></td>
+                </tr>
             );
           }, this);
 
@@ -93,7 +94,7 @@ var TopStocks = React.createClass({
                             <div className="input-group">
                               <input type="text" ref="stockInput" className="form-control" placeholder="Enter stock symbol..." />
                               <span className="input-group-btn">
-                                <button type="submit" className="btn btn-primary">Add</button>
+                                <button type="submit" className="btn btn-primary"><span className="glyphicon glyphicon-plus"></span></button>
                               </span>
                             </div>
                     </form>

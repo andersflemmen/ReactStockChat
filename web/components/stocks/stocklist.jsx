@@ -8,7 +8,7 @@ var StockList = React.createClass({
           });
 
           return (
-            <div className="commentList">
+            <div className="">
               {stockNodes}
             </div>
           );
