@@ -57,11 +57,11 @@
   <script>
   var single = true;
   (function(){
-    loadCurrenciesFromServer('REST/stocks/single/KRW=X',single);
+    loadCurrenciesFromServer('REST/stocks/single/KRW=X',single,"currenciesVanilla");
   })();
 
   setInterval(function(){
-    loadCurrenciesFromServer('REST/stocks/single/KRW=X',single);
+    loadCurrenciesFromServer('REST/stocks/single/KRW=X',single,"currenciesVanilla");
     $('#currenciesVanilla').load(document.URL +  ' #currenciesVanilla');
   }, 2000);
 

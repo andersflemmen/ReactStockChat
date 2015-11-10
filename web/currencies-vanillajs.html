@@ -39,11 +39,11 @@
 
     <script>
     (function(){
-      loadCurrenciesFromServer();
+      loadCurrenciesFromServer('REST/stocks/allCurrencies',false,"currencies");
     })();
 
     setInterval(function(){
-      loadCurrenciesFromServer();
+      loadCurrenciesFromServer('REST/stocks/allCurrencies',false,"currencies");
       $('#currencies').load(document.URL +  ' #currencies');
     }, 2000);
 

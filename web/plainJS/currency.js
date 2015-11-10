@@ -1,4 +1,4 @@
-function createStockElement(stock){
+function createStockElement(stock,place){
 
   var name = stock.name;
   var price = stock.price;
@@ -122,32 +122,32 @@ function createStockElement(stock){
 
   mainDiv.appendChild(headerDiv);
   mainDiv.appendChild(bodyDiv);
-
- var pagePlace = document.getElementById('currenciesVanilla');
+console.log("place: " + place);
+ var pagePlace = document.getElementById(place);
  pagePlace.appendChild(mainDiv);
 
 };
 
-function createStocks(stocks,single){
+function createStocks(stocks,single,place){
   if(single === true){
-    createStockElement(stocks[0]);
+    createStockElement(stocks[0],place);
   }
   else{
-    stocks.map(function (stock, index){
-    createStockElement(stock, index);
+    stocks.map(function (stock){
+    createStockElement(stock, place);
   }
 );
 }
 }
 
-function loadCurrenciesFromServer(url, single){
+function loadCurrenciesFromServer(url, single,place){
 
   $.ajax({
     url: url,
     dataType: 'json',
     cache: false,
     success: function(data) {
-        createStocks(data.resources,single);
+        createStocks(data.resources,single,place);
     }.bind(this),
     error: function(xhr, status, err) {
       console.error(status, err.toString());
