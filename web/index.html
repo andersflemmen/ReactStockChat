@@ -29,7 +29,7 @@
     <script src="components/chat/messageform.jsx" type="text/jsx"></script>
     <script src="components/chat/messagelist.jsx" type="text/jsx"></script>
     <script src="components/chat/login.jsx" type="text/jsx"></script>
-
+     <script src="components/Comments/commentbox.jsx" type="text/jsx"></script>
     <script type="text/jsx" src="components/navbar/navbar.jsx"></script>
 
     <script type="text/jsx" src="components/stats/statsbox.jsx"></script>
@@ -63,7 +63,7 @@
                 <div id="chat" class="chatView col-sm-5" >
                     <script type="text/jsx">
                         ReactDOM.render(
-                           <Login />,
+                           <MessageBox loadUrl='REST/messages/last' pollInterval={1000} postUrl='REST/messages/new/' />,
                             document.getElementById('chat')
                         );
                     </script>
