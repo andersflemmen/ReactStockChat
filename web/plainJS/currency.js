@@ -1,6 +1,4 @@
-function createStockElement(){
-
-
+function createStockElement(stock){
 
   var name = stock.name;
   var price = stock.price;
@@ -125,21 +123,23 @@ function createStockElement(){
   mainDiv.appendChild(headerDiv);
   mainDiv.appendChild(bodyDiv);
 
+ var pagePlace = document.getElementById('currencies');
+ pagePlace.appendChild(mainDiv);
 
-
- return mainDiv;
 };
 
 function loadCurrenciesFromServer(){
+
   $.ajax({
     url: 'REST/stocks/allCurrencies',
     dataType: 'json',
     cache: false,
     success: function(data) {
-       data.resources;
+       createStockElement(data.resources[0]);
     }.bind(this),
     error: function(xhr, status, err) {
       console.error(status, err.toString());
     }
   })
+
 };
