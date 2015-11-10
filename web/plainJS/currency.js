@@ -1,7 +1,11 @@
-function createStockElement(stock){
+function createStockElement(){
+
+
+
   var name = stock.name;
   var price = stock.price;
-  var volume = stock.colume;
+  var symbol = stock.symbol;
+  var volume = stock.volume;
   var type = stock.type;
   var day_high = stock.day_high;
   var day_low = stock.day_low;
@@ -13,17 +17,17 @@ function createStockElement(stock){
   var date = (new Date(stock.utctime)).toLocaleString();
 
   var mainDiv = document.createElement("DIV");
-  mainDiv.className = "panel panel-info pull-left stockPanel"
+  mainDiv.className = "panel panel-info pull-left stockPanel";
   var headerDiv = document.createElement("DIV");
   headerDiv.className = "panel-heading";
   var bodyDiv = document.createElement("DIV");
-  bodyDiv = "panel-body";
+  bodyDiv.className = "panel-body";
 
   //heading
   var heading = document.createElement("H3");
   heading.className = "panel-title";
   var stockName = document.createElement("B");
-  stockName.innerHTML = "{name}";
+  stockName.innerHTML = name;
   heading.appendChild(stockName);
   headerDiv.appendChild(heading);
 
@@ -45,23 +49,24 @@ function createStockElement(stock){
 
   var priceLi = document.createElement("LI");
   priceLi.className = "list-group-item";
-  priceLi.innerHTML = "{price}";
+  priceLi.innerHTML = ("Price: ").bold() +price;
 
   var symbolLi = document.createElement("LI");
   symbolLi.className = "list-group-item";
-  symbolLi.innerHTML = "{symbol}";
+  symbolLi.innerHTML = "Symbol: ".bold() + symbol;
 
   var volumeLi = document.createElement("LI");
   volumeLi.className = "list-group-item";
-  volumeLi.innerHTML = "{volume}";
+  volumeLi.innerHTML = "Volume:".bold() +volume;
 
   var typeLi = document.createElement("LI");
   typeLi.className = "list-group-item";
-  typeLi.innerHTML = "{type}";
+  typeLi.innerHTML = "Type: ".bold() + type;
 
   var changeLi = document.createElement("LI");
-  //priceLi.className = "list-group-item";
-  changeLi.innerHTML = "{chg_percent}";
+
+  changeLi.className = chg_percent > 0 ? "list-group-item list-group-item-success" : chg_percent < 0 ? "list-group-item list-group-item-danger" : "list-group-item list-group-item-warning" ;
+  changeLi.innerHTML = "Change in %: ".bold() + chg_percent;
 
   firstTdUl.appendChild(priceLi);
   firstTdUl.appendChild(symbolLi);
@@ -78,23 +83,23 @@ function createStockElement(stock){
 
   var dayHighLi = document.createElement("LI");
   dayHighLi.className = "list-group-item list-group-item list-group-item-success";
-  dayHighLi.innerHTML = "Day High: {day_high}";
+  dayHighLi.innerHTML = "Day High: ".bold() + day_high;
 
   var dayLowLi = document.createElement("LI");
-  dayLowLi.className = "list-group-item list-group-item list-group-item-success";
-  dayLowLi.innerHTML = "Day Low: {day_low}";
+  dayLowLi.className = "list-group-item list-group-item list-group-item-danger";
+  dayLowLi.innerHTML = "Day Low: ".bold() + day_low;
 
   var yearHighLi = document.createElement("LI");
   yearHighLi.className = "list-group-item list-group-item list-group-item-success";
-  yearHighLi.innerHTML = "Year High: {day_high}";
+  yearHighLi.innerHTML = "Year High: ".bold() + year_high;
 
   var yearLowLi = document.createElement("LI");
-  yearLowLi.className = "list-group-item list-group-item list-group-item-success";
-  yearLowLi.innerHTML = "Year low: {day_high}";
+  yearLowLi.className = "list-group-item list-group-item list-group-item-danger";
+  yearLowLi.innerHTML = "Year low: ".bold() + year_low;
 
   var change2Li = document.createElement("LI");
-  change2Li.className = "list-group-item list-group-item list-group-item-success";
-  change2Li.innerHTML = "Change: {day_high}";
+  change2Li.className = change > 0 ? "list-group-item list-group-item-success" : change < 0 ? "list-group-item list-group-item-danger" : "list-group-item list-group-item-warning" ;
+  change2Li.innerHTML = "Change: ".bold() + change;
 
   secondTdUl.appendChild(dayHighLi);
   secondTdUl.appendChild(dayLowLi);
@@ -107,7 +112,7 @@ function createStockElement(stock){
 
   var lastUpdate = document.createElement("P");
   var lastUpdateB = document.createElement("B");
-  lastUpdateB.innerHTML = "Last update:  + {date}";
+  lastUpdateB.innerHTML = "Last update: ".bold() + date;
 
   lastUpdate.appendChild(lastUpdateB);
 
@@ -120,5 +125,21 @@ function createStockElement(stock){
   mainDiv.appendChild(headerDiv);
   mainDiv.appendChild(bodyDiv);
 
+
+
  return mainDiv;
+};
+
+function loadCurrenciesFromServer(){
+  $.ajax({
+    url: 'REST/stocks/allCurrencies',
+    dataType: 'json',
+    cache: false,
+    success: function(data) {
+       data.resources;
+    }.bind(this),
+    error: function(xhr, status, err) {
+      console.error(status, err.toString());
+    }
+  })
 };
