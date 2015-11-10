@@ -2,7 +2,8 @@ var TopStocks = React.createClass({
     getStocks: function() {
         if (this.state.stockSet.size > 0) {
             var url = this.props.url;
-            this.state.stockSet.forEach(
+            var tempSet = new Set(this.state.stockSet);
+            tempSet.forEach(
                 function(value) {
                     url = url + value + ',';
                 }
@@ -17,7 +18,7 @@ var TopStocks = React.createClass({
                       stocks: data.resources,
                     });
 
-                    if (this.state.stockSet.size !== this.state.stocks.length) {
+                    if (tempSet.size !== this.state.stocks.length) {
 
                         var arraySet = new Set(this.state.stocks.map(function(stock) {
                             return stock.symbol.toUpperCase();
@@ -25,13 +26,13 @@ var TopStocks = React.createClass({
 
                         var stockSet = this.state.stockSet;
 
-                        stockSet.forEach(function(value) {
+                        tempSet.forEach(function(value) {
                             if (!arraySet.has(value)) {
                                 stockSet.delete(value);
                             }
                         });
 
-                        localStorage.setItem('stockSet', JSON.stringify(Array.from(this.state.stockSet)));
+                        localStorage.setItem('stockSet', JSON.stringify(Array.from(stockSet)));
                     }
                 }.bind(this),
                 error: function(xhr, status, err) {
