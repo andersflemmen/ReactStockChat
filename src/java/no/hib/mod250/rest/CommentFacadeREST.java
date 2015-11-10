@@ -43,9 +43,11 @@ public class CommentFacadeREST extends AbstractFacade<Comment> {
     
     @POST
     @Consumes("application/json")
-    @Path("new")
-    public void newComment(final Comment c) {
+    @Path("new/{symbol}")
+    public void newComment(@PathParam("symbol") String symbol, final Comment c) {
         c.setPostedTime(Calendar.getInstance());
+        c.setSymbol(symbol);
+       
         this.create(c);
     }
     
@@ -53,7 +55,8 @@ public class CommentFacadeREST extends AbstractFacade<Comment> {
     @Produces("application/json")
     @Path("get/{symbol}")
     public List<Comment> getCommentsBySymbol(@PathParam("symbol") String symbol) {
-        Query q = em.createQuery("SELECT c FROM Comment c WHERE c.symbol LIKE :symbol");
+        Query q = em.createQuery("SELECT c FROM Comment c WHERE c.symbol LIKE :symbol ORDER BY c.postedTime DESC");
+   
         q.setParameter("symbol", symbol);
         
         return q.getResultList();

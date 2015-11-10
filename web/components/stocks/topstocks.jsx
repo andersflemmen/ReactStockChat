@@ -24,15 +24,15 @@ var TopStocks = React.createClass({
                             return stock.symbol.toUpperCase();
                         }));
 
-                        var stockSet = this.state.stockSet;
+                        
 
                         tempSet.forEach(function(value) {
                             if (!arraySet.has(value)) {
-                                stockSet.delete(value);
+                                this.state.stockSet.delete(value);
                             }
                         });
 
-                        localStorage.setItem('stockSet', JSON.stringify(Array.from(stockSet)));
+                        localStorage.setItem('stockSet', JSON.stringify(Array.from(this.state.stockSet)));
                     }
                 }.bind(this),
                 error: function(xhr, status, err) {

@@ -1,4 +1,4 @@
-function createStockElement(stock){
+function createStockElement(stock,place){
 
   var name = stock.name;
   var price = stock.price;
@@ -122,20 +122,32 @@ function createStockElement(stock){
 
   mainDiv.appendChild(headerDiv);
   mainDiv.appendChild(bodyDiv);
-
- var pagePlace = document.getElementById('currencies');
+console.log("place: " + place);
+ var pagePlace = document.getElementById(place);
  pagePlace.appendChild(mainDiv);
 
 };
 
-function loadCurrenciesFromServer(){
+function createStocks(stocks,single,place){
+  if(single === true){
+    createStockElement(stocks[0],place);
+  }
+  else{
+    stocks.map(function (stock){
+    createStockElement(stock, place);
+  }
+);
+}
+}
+
+function loadCurrenciesFromServer(url, single,place){
 
   $.ajax({
-    url: 'REST/stocks/allCurrencies',
+    url: url,
     dataType: 'json',
     cache: false,
     success: function(data) {
-       createStockElement(data.resources[0]);
+        createStocks(data.resources,single,place);
     }.bind(this),
     error: function(xhr, status, err) {
       console.error(status, err.toString());

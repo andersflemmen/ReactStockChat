@@ -48,7 +48,7 @@ public class MessageFacadeREST extends AbstractFacade<Message> {
         
         m.setPostedTime(Calendar.getInstance());
        
-    
+       
         super.create(m);
     }
 

@@ -1,4 +1,5 @@
       var MessageList = React.createClass({
+
            render: function() {
                var messageNodes = this.props.data.map(function (comment){
                   return (
