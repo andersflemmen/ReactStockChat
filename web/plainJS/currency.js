@@ -140,10 +140,10 @@ function createStocks(stocks,single){
 }
 }
 
-function loadCurrenciesFromServer(single){
+function loadCurrenciesFromServer(url, single){
 
   $.ajax({
-    url: 'REST/stocks/allCurrencies',
+    url: url,
     dataType: 'json',
     cache: false,
     success: function(data) {

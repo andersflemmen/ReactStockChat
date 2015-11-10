@@ -47,7 +47,7 @@
     <div>
     <script type="text/jsx">
       ReactDOM.render(
-      <StockBox url={"REST/stocks/single/GOOG"} pollInterval={2000} />,
+      <StockBox url={"REST/stocks/single/KRW=X"} pollInterval={2000} />,
       document.getElementById('currencyReact')
       );
     </script>
@@ -57,11 +57,11 @@
   <script>
   var single = true;
   (function(){
-    loadCurrenciesFromServer(single);
+    loadCurrenciesFromServer('REST/stocks/single/KRW=X',single);
   })();
 
   setInterval(function(){
-    loadCurrenciesFromServer(single);
+    loadCurrenciesFromServer('REST/stocks/single/KRW=X',single);
     $('#currenciesVanilla').load(document.URL +  ' #currenciesVanilla');
   }, 2000);
 
