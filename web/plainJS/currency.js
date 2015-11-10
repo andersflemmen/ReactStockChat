@@ -128,6 +128,14 @@ function createStockElement(stock){
 
 };
 
+function createStocks(stocks){
+  stocks.map(function (stock, index){
+    console.log(stock);
+    createStockElement(stock, index);
+  }
+);
+}
+
 function loadCurrenciesFromServer(){
 
   $.ajax({
@@ -135,7 +143,7 @@ function loadCurrenciesFromServer(){
     dataType: 'json',
     cache: false,
     success: function(data) {
-       createStockElement(data.resources[0]);
+       createStocks(data.resources);
     }.bind(this),
     error: function(xhr, status, err) {
       console.error(status, err.toString());
