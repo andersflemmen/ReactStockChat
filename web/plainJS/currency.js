@@ -123,27 +123,31 @@ function createStockElement(stock){
   mainDiv.appendChild(headerDiv);
   mainDiv.appendChild(bodyDiv);
 
- var pagePlace = document.getElementById('currencies');
+ var pagePlace = document.getElementById('currenciesVanilla');
  pagePlace.appendChild(mainDiv);
 
 };
 
-function createStocks(stocks){
+function createStocks(stocks,single){
+  if(single === true){
+    createStockElement(stocks[0]);
+  }
+  else{
     stocks.map(function (stock, index){
     createStockElement(stock, index);
-  //  createStockElement(stocks[0]);
   }
 );
 }
+}
 
-function loadCurrenciesFromServer(){
+function loadCurrenciesFromServer(single){
 
   $.ajax({
     url: 'REST/stocks/allCurrencies',
     dataType: 'json',
     cache: false,
     success: function(data) {
-       createStocks(data.resources);
+        createStocks(data.resources,single);
     }.bind(this),
     error: function(xhr, status, err) {
       console.error(status, err.toString());
