@@ -129,9 +129,9 @@ function createStockElement(stock){
 };
 
 function createStocks(stocks){
-  stocks.map(function (stock, index){
-    console.log(stock);
+    stocks.map(function (stock, index){
     createStockElement(stock, index);
+  //  createStockElement(stocks[0]);
   }
 );
 }

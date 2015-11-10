@@ -42,6 +42,11 @@
       loadCurrenciesFromServer();
     })();
 
+    setInterval(function(){
+      loadCurrenciesFromServer();
+      $('#currencies').load(document.URL +  ' #currencies');
+    }, 2000);
+
       </script>
 
 
