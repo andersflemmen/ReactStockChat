@@ -61,26 +61,46 @@ var MessageBox = React.createClass({
           render: function() {
               return(
               <div className="chat">
-{this.state.username && (<Login logout={this.logout} logoutText="Logout" username={this.state.username}/>)}
-                <div className="messageBox">
+
+                <div className="messageBox panel panel-info">
            
-                <div className="chatHeader">
-                {this.state.username && ( <h3>
-                        Hello: {this.state.username} 
-                </h3>) }
-                
-                {!this.state.username && (<Login login={this.login} submitText="Join Chat"/>)}
-                </div>
-                <MessageList data={this.state.data}/>
-                <div className="chatBottom">
-                { this.state.username && (
-                <MessageForm onCommentSubmit={this.handleCommentSubmit} author={this.props.user} />
-                )}
+                    <div className="chatHeader panel-heading">
+                        <div className="row">
+                            {this.state.username && (
+                                <div className="col-sm-8">
+                                    <h3 className="panel-title"><b>Username : {this.state.username}</b></h3> 
+                                </div>
+                            )}
+
+                            {this.state.username && (
+                                <div className="col-sm-4">
+                                    <Login logout={this.logout} logoutText="Logout" username={this.state.username}/>
+                                </div>
+                            )}
+
+                            {!this.state.username && (
+                            <div>
+                                <div className="col-sm-1"></div>
+
+                                <div className="col-sm-10">
+                                    <Login login={this.login} submitText="Join Chat"/>
+                                </div>
+
+                                <div className="col-sm-1"></div>
+                            </div>
+                            )}
+                        </div>
+                    </div>
+                    <MessageList data={this.state.data}/>
+                    <div className="chatBottom">
+                        { this.state.username && (
+                        <MessageForm onCommentSubmit={this.handleCommentSubmit} author={this.state.username} />
+                        )}
 
                 
+                    </div>
                 </div>
-                </div>
-                </div>
+               </div>
              );
           }
        });

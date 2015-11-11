@@ -6,7 +6,7 @@ var StockSearch = React.createClass({
     },
     submit: function(event){
         event.preventDefault();
-        var stockSymbol = React.findDOMNode(this.refs.inputField).value.trim();
+        var stockSymbol = React.findDOMNode(this.refs.inputField).value.trim().toUpperCase();
         this.setState({value: stockSymbol});
         this.refs.stockbox.update("REST/stocks/single/" + stockSymbol);
     },

@@ -10,9 +10,9 @@
                });
                        
                return (
-                  <ul className="messageList">
-                  {messageNodes}
-                  </ul>
+                    <div className="messageList">
+                        {messageNodes}
+                    </div>
                 );
            }
        });

@@ -12,10 +12,14 @@
            
            render: function() {
                return(
-                  <form className="messageForm" onSubmit={this.handleSubmit}>
-                  <input type="text" placeholder="Write something" ref="text" />
-                  <input type="submit" value="Post" />
-                  </form>
+                    <form onSubmit={this.handleSubmit}>
+                        <div className="input-group chatInput">
+                            <input type="text" ref="text" className="form-control" placeholder="Write something" />
+                            <span className="input-group-btn ">
+                                <button type="submit" className="btn btn-primary" ><span className="glyphicon glyphicon-comment"></span></button>
+                            </span>
+                        </div>  
+                    </form>
                 );
            }
        });
