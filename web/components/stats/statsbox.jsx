@@ -32,7 +32,7 @@ var StatsBox = React.createClass({
                     }, this);
 
         return (
-            <div className="panel panel-info pull-left stockPanel">
+            <div className="panel panel-info pull-left ">
                 <div className="panel-heading">
                     <h3 className="panel-title">
                         <b>Statinator</b>
@@ -40,7 +40,7 @@ var StatsBox = React.createClass({
                 </div>
                 <br />
                 <div>
-                    <ul>
+                    <ul className="statsPadding">
                         <li>Number of comments: {this.state.stats.num_comments}</li>
                         <li>Number of comments today: {this.state.stats.num_comments_today}</li>
                         <li>Number of chat messages: {this.state.stats.num_messages}</li>

@@ -20,11 +20,11 @@ var Login = React.createClass( {
                 </div>
             </form>
             );
-        }
+        }   
         else{       
         return(
 
-        <form onSubmit={this.props.logout} className="">
+        <form onSubmit={this.props.logout} className="chatInput">
             <div className="input-group">
                 <button type="submit" className="btn btn-primary" >{this.props.logoutText} <span className="glyphicon glyphicon-log-out"></span></button>
             </div>  

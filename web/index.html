@@ -51,16 +51,25 @@
             <div class="row">
                 <div class="col-sm-1"></div>
 
-                <div id="search" class="searchView col-sm-5">
+                <div id="topStock" class="col-sm-4">
                     <script type="text/jsx">
                         ReactDOM.render(
-                            <StockSearch/>,
-                            document.getElementById('search')
+                            <TopStocks url="REST/stocks/multi/" pollInterval={10000} />,
+                            document.getElementById('topStock')
+                        );
+                    </script>
+                </div>
+                
+                <div id="stats" class="col-sm- center-block">
+                    <script type="text/jsx">
+                        ReactDOM.render(
+                            <StatsBox url="REST/stats/all" pollInterval={10000} />,
+                            document.getElementById('stats')
                         );
                     </script>
                 </div>
 
-                <div id="chat" class="chatView col-sm-5" >
+                <div id="chat" class="chatView col-sm-4 pull-right" >
                     <script type="text/jsx">
                         ReactDOM.render(
                            <MessageBox loadUrl='REST/messages/last' pollInterval={1000} postUrl='REST/messages/new/' />,
@@ -72,74 +81,18 @@
                 <div class="col-sm-1"></div>
 
             </div>
-            <hr/>
-            <div class="row">
-
-                <div class="col-sm-1"></div>
-
-                <div id="topStock" class="col-sm-5">
-                    <script type="text/jsx">
+            
+            <div class="row" id="comments">
+                <script type="text/jsx">
                         ReactDOM.render(
-                            <TopStocks url="REST/stocks/multi/" pollInterval={10000} />,
-                            document.getElementById('topStock')
+                            <StockSearch/>,
+                            document.getElementById('comments')
                         );
                     </script>
-                </div>
-
-                <div id="stats" class="col-sm-5">
-                    <script type="text/jsx">
-                        ReactDOM.render(
-                            <StatsBox url="REST/stats/all" pollInterval={10000} />,
-                            document.getElementById('stats')
-                        );
-                    </script>
-                </div>
-
-                <div class="col-sm-1"></div>
-
             </div>
+            
             <hr/>
             <div id="TEST">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12">
-                    <h3>User Comment Example</h3>
-                </div><!-- /col-sm-12 -->
-            </div><!-- /row -->
-            <div class="row">
-                <div class="col-sm-1">
-
-                </div><!-- /col-sm-1 -->
-
-                <div class="col-sm-9">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <span class="text-muted">This site is awesome!</span>
-                            <span class="text-muted pull-right"  id="1"> <script>document.getElementById("1").innerHTML = timeDifference(new Date(), new Date(1447064325986));</script></span> <span class="pull-right text-muted glyphicon glyphicon-time" style="margin-right: 5px" ></span>
-                        </div>
-                    </div><!-- /panel panel-default -->
-                </div><!-- /col-sm-5 -->
-
-            </div>
-            <!-- -->
-            <div class="row">
-                <div class="col-sm-1">
-
-                </div><!-- /col-sm-1 -->
-
-                <div class="col-sm-9">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <span class="text-muted">This site is awesome!</span>
-                            <span class="text-muted pull-right"  id="2"> <script>document.getElementById("2").innerHTML = timeDifference(new Date(), new Date(1447064325986));</script></span> <span class="pull-right text-muted glyphicon glyphicon-time" style="margin-right: 5px" ></span>
-                        </div>
-                    </div><!-- /panel panel-default -->
-                </div><!-- /col-sm-5 -->
-
-            </div>
-            <!-- -->
-
-        </div>
             </div>
             </div>
   </body>
