@@ -14,6 +14,7 @@ var MyNavbarInstance = React.createClass ({
         <NavItem eventKey={1} href="index.html">Home</NavItem>
         <NavItem eventKey={2} href="currencies.html">Currencies</NavItem>
         <NavItem eventKey={3} href="currencies-vanillajs.html">Currencies vanillajs</NavItem>
+        <NavItem eventKey={3} href="currencies-smartjs.html">Currencies SmartJS</NavItem>
         <NavItem eventKey={3} href="vanilla-vs-react.html">Vanilla vs React</NavItem>
         <NavDropdown eventKey={3} title="Test Cases" id="basic-nav-dropdown">
         <MenuItem eventKey="1" href="brutejs-currency.html">BruteJS currency</MenuItem>

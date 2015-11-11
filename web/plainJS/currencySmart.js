@@ -127,12 +127,12 @@ function createStockElement(stock,place){
 
 };
 
-function createStockHTML(place){
+function createStockHTML(index, place){
 
   var mainDiv = document.createElement("DIV");
 
   mainDiv.className = "panel panel-info pull-left stockPanel";
-  mainDiv.id = "mainDiv";
+  mainDiv.id = "mainDiv" + index;
   var headerDiv = document.createElement("DIV");
   headerDiv.className = "panel-heading";
   var bodyDiv = document.createElement("DIV");
@@ -142,7 +142,7 @@ function createStockHTML(place){
   var heading = document.createElement("H3");
   heading.className = "panel-title";
   var stockName = document.createElement("B");
-  stockName.id = "name";
+  stockName.id = "name"+ index;
   heading.appendChild(stockName);
   headerDiv.appendChild(heading);
 
@@ -164,23 +164,23 @@ function createStockHTML(place){
 
   var priceLi = document.createElement("LI");
   priceLi.className = "list-group-item";
-  priceLi.id = "price";
+  priceLi.id = "price"+ index;
 
   var symbolLi = document.createElement("LI");
   symbolLi.className = "list-group-item";
-  symbolLi.id = "symbol";
+  symbolLi.id = "symbol"+ index;
 
   var volumeLi = document.createElement("LI");
   volumeLi.className = "list-group-item";
-  volumeLi.id ="volume";
+  volumeLi.id ="volume"+ index;
 
   var typeLi = document.createElement("LI");
   typeLi.className = "list-group-item";
-  typeLi.id = "type";
+  typeLi.id = "type"+ index;
 
   var changeLi = document.createElement("LI");
   changeLi.className = "list-group-item list-group-item-warning" ;
-  changeLi.id = "chg_percent";
+  changeLi.id = "chg_percent"+ index;
 
   firstTdUl.appendChild(priceLi);
   firstTdUl.appendChild(symbolLi);
@@ -197,23 +197,23 @@ function createStockHTML(place){
 
   var dayHighLi = document.createElement("LI");
   dayHighLi.className = "list-group-item list-group-item list-group-item-success";
-  dayHighLi.id = "day_high";
+  dayHighLi.id = "day_high"+ index;
 
   var dayLowLi = document.createElement("LI");
   dayLowLi.className = "list-group-item list-group-item list-group-item-danger";
-  dayLowLi.id = "day_low";
+  dayLowLi.id = "day_low"+ index;
 
   var yearHighLi = document.createElement("LI");
   yearHighLi.className = "list-group-item list-group-item list-group-item-success";
-  yearHighLi.id = "year_high";
+  yearHighLi.id = "year_high"+ index;
 
   var yearLowLi = document.createElement("LI");
   yearLowLi.className = "list-group-item list-group-item list-group-item-danger";
-  yearLowLi.id = "year_low";
+  yearLowLi.id = "year_low"+ index;
 
   var change2Li = document.createElement("LI");
   change2Li.className = "list-group-item list-group-item-warning" ;
-  change2Li.id = "change";
+  change2Li.id = "change"+ index;
 
   secondTdUl.appendChild(dayHighLi);
   secondTdUl.appendChild(dayLowLi);
@@ -226,7 +226,7 @@ function createStockHTML(place){
 
   var lastUpdate = document.createElement("P");
   var lastUpdateB = document.createElement("B");
-  lastUpdateB.id = "lastUpdateB";
+  lastUpdateB.id = "lastUpdateB"+ index;
 
   lastUpdate.appendChild(lastUpdateB);
 
@@ -243,34 +243,8 @@ function createStockHTML(place){
 
 };
 
-function updateSingleStock(url){
-  $.ajax({
-    url: url,
-    dataType: 'json',
-    cache: false,
-    success: function(data) {
-        updateValues(data.resources[0]);
-    }.bind(this),
-    error: function(xhr, status, err) {
-      console.error(status, err.toString());
-    }
-  })
 
-};
-
-function createStocks(stocks,single,place){
-  if(single === true){
-    createStockElement(stocks[0],place);
-  }
-  else{
-    stocks.map(function (stock){
-    createStockElement(stock, place);
-  }
-);
-}
-}
-
-function updateValues(stock){
+function updateValues(stock,index){
 
   var name = stock.name;
   var price = stock.price;
@@ -286,46 +260,67 @@ function updateValues(stock){
 
   var date = (new Date(stock.utctime)).toLocaleString();
 
-  var stockName = document.getElementById("name");
+  var mainDiv = document.getElementById("mainDiv"+ index);
+  var stockName = document.getElementById("name"+ index);
   stockName.innerHTML = name;
 
-  var priceLi = document.getElementById("price");
+  var priceLi = document.getElementById("price"+ index);
   priceLi.innerHTML = ("Price: ").bold() + price;
 
-  var symbolLi = document.getElementById("symbol");
+  var symbolLi = document.getElementById("symbol"+ index);
   symbolLi.innerHTML = symbolLi.innerHTML = "Symbol: ".bold() + symbol;
 
-  var volumeLi = document.getElementById("volume");
+  var volumeLi = document.getElementById("volume"+ index);
   volumeLi.innerHTML = "Volume: ".bold() +volume;
 
-  var typeLi = document.getElementById("type");
+  var typeLi = document.getElementById("type"+ index);
   typeLi.innerHTML = "Type: ".bold() + type;
 
-  var dayHighLi = document.getElementById("day_high");
+  var dayHighLi = document.getElementById("day_high"+ index);
   dayHighLi.innerHTML = "Day High: ".bold() + day_high;
 
-  var dayLowLi = document.getElementById("day_low");
+  var dayLowLi = document.getElementById("day_low"+ index);
   dayLowLi.innerHTML = "Day Low: ".bold() + day_low;
 
-  var yearHighLi = document.getElementById("year_high");
+  var yearHighLi = document.getElementById("year_high"+ index);
   yearHighLi.innerHTML = "Year High: ".bold() + year_high;
 
-  var yearLowLi = document.getElementById("year_low");
+  var yearLowLi = document.getElementById("year_low"+ index);
   yearLowLi.innerHTML = "Year low: ".bold() + year_low;
 
-  var changeLi = document.getElementById("chg_percent");
+  var changeLi = document.getElementById("chg_percent"+ index);
   changeLi.className = chg_percent > 0 ? "list-group-item list-group-item-success" : chg_percent < 0 ? "list-group-item list-group-item-danger" : "list-group-item list-group-item-warning" ;
   changeLi.innerHTML = "Change in %: ".bold() + chg_percent;
 
-  var change2Li = document.getElementById("change");
+  var change2Li = document.getElementById("change"+ index);
   change2Li.innerHTML = "Change: ".bold() + change;
 
-  lastUpdateB = document.getElementById("lastUpdateB");
+  lastUpdateB = document.getElementById("lastUpdateB"+ index);
   change2Li.className = change > 0 ? "list-group-item list-group-item-success" : change < 0 ? "list-group-item list-group-item-danger" : "list-group-item list-group-item-warning" ;
   lastUpdateB.innerHTML = "Last update: ".bold() + date;
 
 }
 
+
+
+function createStocks(stocks,single,place){
+  if(single === true){
+    createStockElement(stocks[0],place);
+  }
+  else{
+    stocks.map(function (stock,index){
+      createStockHTML(index, place);
+    }
+  );
+}
+}
+
+function updateMultipleValues(stocks){
+  stocks.map(function(stock,index){
+    updateValues(stock,index);
+  }
+  );
+}
 function loadCurrenciesFromServer(url, single,place){
 
   $.ajax({
@@ -333,7 +328,7 @@ function loadCurrenciesFromServer(url, single,place){
     dataType: 'json',
     cache: false,
     success: function(data) {
-        createStocks(data.resources,single,place);
+      createStocks(data.resources,single,place);
     }.bind(this),
     error: function(xhr, status, err) {
       console.error(status, err.toString());
@@ -342,13 +337,13 @@ function loadCurrenciesFromServer(url, single,place){
 
 };
 
-function updateSingleStock(url){
+function updateMultipleStocks(url){
   $.ajax({
     url: url,
     dataType: 'json',
     cache: false,
     success: function(data) {
-        updateValues(data.resources[0]);
+      updateMultipleValues(data.resources);
     }.bind(this),
     error: function(xhr, status, err) {
       console.error(status, err.toString());
