@@ -30,7 +30,7 @@ var TopStocks = React.createClass({
                             if (!arraySet.has(value)) {
                                 this.state.stockSet.delete(value);
                             }
-                        });
+                        },this);
 
                         localStorage.setItem('stockSet', JSON.stringify(Array.from(this.state.stockSet)));
                     }
@@ -65,7 +65,7 @@ var TopStocks = React.createClass({
     addStock: function(e) {
         e.preventDefault();
 
-        var textField = React.findDOMNode(this.refs.stockInput);
+        var textField = ReactDOM.findDOMNode(this.refs.stockInput);
         var symbol = textField.value.trim().toUpperCase();
         textField.value = '';
 
@@ -78,7 +78,7 @@ var TopStocks = React.createClass({
     render: function() {
         var stockNodes = this.state.stocks.map(function (stock, index) {
             return (
-                <tr className={(stock.chg_percent > 0 ? "success" : (stock.chg_percent < 0 ? "danger" : "warning")) }>
+                <tr key={stock.symbol} className={(stock.chg_percent > 0 ? "success" : (stock.chg_percent < 0 ? "danger" : "warning"))} >
                     <td className="sixtyfivePercent">{stock.name}</td> 
                     <td className="twentyfivePercent">{stock.chg_percent}%</td>
                     <td className="tenPercent"><button onClick={this.removeStock.bind(this, stock.symbol)} className="btn btn-danger" ><span className="glyphicon glyphicon-remove"></span></button></td>

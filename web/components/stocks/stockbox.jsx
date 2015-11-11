@@ -2,13 +2,17 @@ var StockBox = React.createClass({
 
         loadCommentsFromServer: function() {
           $.ajax({
-            url: this.props.url,
+            url: this.props.url + this.props.symbol,
             dataType: 'json',
             cache: false,
             success: function(data) {
                 this.setState({
                   stocks: data.resources,
                 });
+                
+                if(data.resources.length > 0){
+                    this.props.update(this.props.symbol)
+                }
 
             }.bind(this),
             error: function(xhr, status, err) {
@@ -26,6 +30,10 @@ var StockBox = React.createClass({
                 this.setState({
                   stocks: data.resources,
                 });
+
+                if(data.resources.length > 0){
+                    this.props.update(this.props.symbol)
+                }
 
             }.bind(this),
             error: function(xhr, status, err) {
