@@ -62,7 +62,7 @@ var MessageBox = React.createClass({
               return(
               <div className="chat">
 
-                <div className="messageBox panel panel-info">
+                <div className="messageBox panel panel-info pull-right">
            
                     <div className="chatHeader panel-heading">
                         <div className="row">

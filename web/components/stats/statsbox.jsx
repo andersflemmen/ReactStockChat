@@ -32,7 +32,7 @@ var StatsBox = React.createClass({
                     }, this);
 
         return (
-            <div className="panel panel-info pull-left ">
+            <div className="panel panel-info ">
                 <div className="panel-heading">
                     <h3 className="panel-title">
                         <b>Statinator</b>
