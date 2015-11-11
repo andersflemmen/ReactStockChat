@@ -12,9 +12,12 @@ var Stock = React.createClass({
                 </div>
                 <div className="panel-body">
                     <table className="stockPanelTable" >
+                    <colgroup>
+                        <col width="50%" />
+                        <col width="50%" />
+                    </colgroup>
                         <tbody>
-                        <col width="50%" />
-                        <col width="50%" />
+                        
                         <tr>
                             <td>
                                 <div className="">

@@ -3,7 +3,7 @@ var StockList = React.createClass({
 
           var stockNodes = this.props.stocks.map(function (stock, index) {
             return (
-              <Stock stock={stock}/>
+              <Stock stock={stock} key={stock.symbol}/>
             );
           });
 

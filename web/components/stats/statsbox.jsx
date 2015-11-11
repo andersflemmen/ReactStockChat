@@ -28,7 +28,7 @@ var StatsBox = React.createClass({
     render: function() {
 
         var top10 = this.state.stats.top_ten_commented.map(function(stock) {
-                        return (<li>{stock.symbol} ({stock.count})</li>);
+                        return (<li key={stock.symbol}>{stock.symbol} ({stock.count})</li>);
                     }, this);
 
         return (

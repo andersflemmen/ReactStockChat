@@ -15,12 +15,13 @@ var MessageBox = React.createClass({
              });
          },
          handleCommentSubmit: function(comment){
-
+             var data = JSON.stringify(comment);
+             comment.id = new Date().getTime();
              var comments = this.state.data;
              var newComments = comments.concat([comment]);
              this.setState({data: newComments});
 
-             var data = JSON.stringify(comment);
+             
            $.ajax({
                url: this.props.postUrl,
                contentType: 'application/json; charset=utf-8',

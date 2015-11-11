@@ -12,6 +12,20 @@ var CommentBox = React.createClass({
                 }.bind(this)
              });
          },
+
+         refresh: function(url){
+             $.ajax({
+                url: url,
+                dataType: 'json',
+                cache: false,
+                success: function(data){
+                    this.setState({data: data});
+                }.bind(this),
+                error: function(xhr, status, err){
+                    console.error(this.props.loadUrl, status, err.toString());
+                }.bind(this)
+             });
+         },
          handleCommentSubmit: function(comment){
 
              var data = JSON.stringify(comment);
