@@ -39,8 +39,6 @@ public class StockConsumer {
     private final String ALL_CURRENCIES = "http://finance.yahoo.com/webservice/v1/symbols/allcurrencies/quote?format=json&view=detail";
     private final String STOCK_START = "http://finance.yahoo.com/webservice/v1/symbols/";
     private final String STOCK_END = "/quote?format=json&view=detail";
-    private final String STOCK_EXCHANGES = "^IXIC,^AMZI,^DJI,^GSPC,^OSEAX";
-    private final String[] EXCHANGE_NAMES = {"NASDAQ", "New York", "Dow Jones", "S&P 500", "Oslo"};
 
     private final Map<String, Stock> stockMap;
 

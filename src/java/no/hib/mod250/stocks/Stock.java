@@ -57,6 +57,7 @@ public class Stock {
             name = fields.getString("name");
             symbol = fields.getString("symbol");
             type = fields.getString("type");
+            time = fields.getString("utctime");
 
             try {
                 volume = Integer.parseInt(fields.getString("volume"));
@@ -71,8 +72,6 @@ public class Stock {
             } catch (NumberFormatException e) {
             } catch (NullPointerException e) {
             }
-
-            time = fields.getString("utctime");
         } catch (NullPointerException e) {
         }
     }
