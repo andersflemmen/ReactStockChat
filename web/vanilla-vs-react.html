@@ -17,7 +17,7 @@
 <script src="https://fb.me/react-dom-0.14.0.js"></script>
 
 <script src="plainJS/currency.js"></script>
-<script  type="text/jsx" src="components/navbar/navbar.jsx"></script>
+<script type="text/jsx" src="components/navbar/navbar.jsx"></script>
 <script type="text/jsx" src="components/stocks/stocklist.jsx"></script>
 <script type="text/jsx" src="components/stocks/stock.jsx"></script>
 <script type="text/jsx" src="components/stocks/stockbox.jsx"></script>
@@ -36,14 +36,18 @@
   </div>
 
 <div class="row">
-  <div class="col-sm-6" id="currenciesVanilla">
-    <h3>Vanilla js</h3>
+
+  <div class="col-sm-6" id="bruteJS">
+    <h3>Brute JS</h3>
+  </div>
+
+  <div class="col-sm-6" id="smartJS">
+    <h3>Smart JS</h3>
   </div>
 
   <div class="col-sm-6" >
     <h3>React</h3>
-    <div id="currencyReact">
-
+  <div id="currencyReact">
     <div>
     <script type="text/jsx">
       ReactDOM.render(
@@ -55,18 +59,25 @@
 </div>
 
   <script>
-  var single = true;
   (function(){
-    loadCurrenciesFromServer('REST/stocks/single/KRW=X',single,"currenciesVanilla");
+    loadCurrenciesFromServer('REST/stocks/single/KRW=X',true,"bruteJS");
   })();
 
-  setInterval(function(){
-    loadCurrenciesFromServer('REST/stocks/single/KRW=X',single,"currenciesVanilla");
-    $('#currenciesVanilla').load(document.URL +  ' #currenciesVanilla');
-  }, 2000);
+
+    setInterval(function(){
+        loadCurrenciesFromServer('REST/stocks/single/KRW=X',true,"bruteJS");
+        $('#bruteJS').load(document.URL +  ' #bruteJS');
+    }, 2000);
 
     </script>
 
+    <script>
+      createStockHTML("smartJS");
+      setInterval(function(){
+            updateSingleStock('REST/stocks/single/KRW=X');
+      }, 2000);
+
+    </script>
 
 
 </body>
