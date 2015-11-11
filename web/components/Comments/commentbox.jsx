@@ -56,21 +56,43 @@ var CommentBox = React.createClass({
           render: function() {
               return(
                 <div className="commentBox">
-                
-              { !this.state.username && (<Login login={this.login} submitText="Set name" />)}
+                <div className="row">
+                    <div className="col-sm-1">
+                    </div>
 
-              {  this.state.username && ( 
-              <div>
-              <br/>
-              <br/>
-              <Login logout={this.logout} username={this.state.username} logoutText="Change name" /> 
-                <div className="commentForm">
-                 <MessageForm onCommentSubmit={this.handleCommentSubmit} author={this.state.username} />
+                    <div className="col-sm-10">
+                        <h1>Comments for this stock</h1>
+                    </div>
+
+                    <div className="col-sm-1">
+                    </div>
                 </div>
-                </div>)
+                <div className="row">
+                
+                    <div className="col-sm-1">
+                    </div>
+
+                    <div className="col-sm-10">
+                            { !this.state.username && (<Login login={this.login} submitText="Set name" />)}
+                            {  this.state.username && ( 
+                            <div>
+                            <br/>
+                            <br/>
+                            <Login logout={this.logout} username={this.state.username} logoutText="Change name" /> 
+                            <div className="commentForm">
+                                <MessageForm onCommentSubmit={this.handleCommentSubmit} author={this.state.username} />
+                            </div>
+                    </div>)
                 }
+
+                    </div>
+
+                    <div className="col-sm-1">
+                    </div>
+                </div>
+                <hr/>
+              
                 <MessageList data={this.state.data} />
-            
                 </div>
              );
           }
