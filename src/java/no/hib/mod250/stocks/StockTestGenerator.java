@@ -17,12 +17,35 @@ import javax.json.JsonObjectBuilder;
  */
 public class StockTestGenerator {
     
+    /*
+        1. All changed
+        2. 2 changes
+        3. No change
+        4. No change
+        5. 2 changes
+        6. No change
+        7. No change
+        8. No change
+        9. All changed
+        10. No change
+        11. No change
+        12. 1 change
+        13. No change
+        14. No change
+        15. All changed
+        16. 2 changes
+        17. No change
+        18. 2 changes
+        19. No change
+        20. All changed
+    */
     private final List<Stock> data;
     
     public StockTestGenerator() {
         data = new ArrayList<>();
         Stock base;
         
+        // 1
         base = new Stock();
         base.setChange(1.37);
         base.setChangePercent(3.47);
@@ -38,6 +61,7 @@ public class StockTestGenerator {
         base.setSymbol("T");
         data.add(base);
         
+        // 2
         base = new Stock();
         base.setChange(2.5);
         base.setChangePercent(6.7);
@@ -53,6 +77,7 @@ public class StockTestGenerator {
         base.setSymbol("T");
         data.add(base);
         
+        // 3
         base = new Stock();
         base.setChange(2.5);
         base.setChangePercent(6.7);
@@ -68,6 +93,7 @@ public class StockTestGenerator {
         base.setSymbol("T");
         data.add(base);
         
+        // 4
         base = new Stock();
         base.setChange(2.5);
         base.setChangePercent(6.7);
@@ -83,6 +109,7 @@ public class StockTestGenerator {
         base.setSymbol("T");
         data.add(base);
         
+        // 5
         base = new Stock();
         base.setChange(3.1);
         base.setChangePercent(8);
@@ -98,6 +125,7 @@ public class StockTestGenerator {
         base.setSymbol("T");
         data.add(base);      
         
+        // 6
         base = new Stock();
         base.setChange(3.1);
         base.setChangePercent(8);
@@ -113,6 +141,7 @@ public class StockTestGenerator {
         base.setSymbol("T");
         data.add(base);  
         
+        // 7
         base = new Stock();
         base.setChange(3.1);
         base.setChangePercent(8);
@@ -128,6 +157,7 @@ public class StockTestGenerator {
         base.setSymbol("T");
         data.add(base);  
         
+        // 8
         base = new Stock();
         base.setChange(3.1);
         base.setChangePercent(8);
@@ -143,6 +173,7 @@ public class StockTestGenerator {
         base.setSymbol("T");
         data.add(base);  
         
+        // 9
         base = new Stock();
         base.setChange(2.245);
         base.setChangePercent(4.463);
@@ -158,6 +189,7 @@ public class StockTestGenerator {
         base.setSymbol("T");
         data.add(base);  
         
+        // 10
         base = new Stock();
         base.setChange(2.245);
         base.setChangePercent(4.463);
@@ -173,6 +205,7 @@ public class StockTestGenerator {
         base.setSymbol("T");
         data.add(base); 
         
+        // 11
         base = new Stock();
         base.setChange(2.245);
         base.setChangePercent(4.463);
@@ -188,6 +221,7 @@ public class StockTestGenerator {
         base.setSymbol("T");
         data.add(base); 
         
+        // 12
         base = new Stock();
         base.setChange(2.245);
         base.setChangePercent(4.463);
@@ -203,6 +237,7 @@ public class StockTestGenerator {
         base.setSymbol("T");
         data.add(base); 
         
+        // 13
         base = new Stock();
         base.setChange(2.245);
         base.setChangePercent(4.463);
@@ -218,6 +253,7 @@ public class StockTestGenerator {
         base.setSymbol("T");
         data.add(base); 
         
+        // 14
         base = new Stock();
         base.setChange(2.245);
         base.setChangePercent(4.463);
@@ -233,6 +269,7 @@ public class StockTestGenerator {
         base.setSymbol("T");
         data.add(base); 
         
+        // 15
         base = new Stock();
         base.setChange(2.46);
         base.setChangePercent(5.463);
@@ -248,6 +285,7 @@ public class StockTestGenerator {
         base.setSymbol("T");
         data.add(base); 
         
+        // 16
         base = new Stock();
         base.setChange(8.4);
         base.setChangePercent(13.2);
@@ -263,6 +301,7 @@ public class StockTestGenerator {
         base.setSymbol("T");
         data.add(base); 
         
+        // 17
         base = new Stock();
         base.setChange(8.4);
         base.setChangePercent(13.2);
@@ -278,6 +317,7 @@ public class StockTestGenerator {
         base.setSymbol("T");
         data.add(base); 
         
+        // 18
         base = new Stock();
         base.setChange(3.1);
         base.setChangePercent(8);
@@ -293,6 +333,7 @@ public class StockTestGenerator {
         base.setSymbol("T");
         data.add(base); 
         
+        // 19
         base = new Stock();
         base.setChange(3.1);
         base.setChangePercent(8);
@@ -308,6 +349,7 @@ public class StockTestGenerator {
         base.setSymbol("T");
         data.add(base); 
         
+        // 20
         base = new Stock();
         base.setChange(7.436);
         base.setChangePercent(8.436);
