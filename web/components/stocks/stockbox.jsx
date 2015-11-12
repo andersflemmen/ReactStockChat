@@ -10,7 +10,7 @@ var StockBox = React.createClass({
                   stocks: data.resources,
                 });
                 
-                if(data.resources.length > 0){
+                if(data.resources.length > 0 && this.props.update){
                     this.props.update(this.props.symbol)
                 }
 
