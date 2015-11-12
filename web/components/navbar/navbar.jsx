@@ -21,6 +21,7 @@ var MyNavbarInstance = React.createClass ({
         <MenuItem divider />
         <MenuItem eventKey="1" href="currencies-vanillajs.html">Currencies VanillaJS</MenuItem>
         <MenuItem eventKey="2" href="currencies-smartjs.html">Currencies SmartJS</MenuItem>
+        <MenuItem eventKey="3" href="currencies-react.html">Currencies ReactJS</MenuItem> 
         <MenuItem divider />
         </NavDropdown>
       </Nav>
