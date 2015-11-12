@@ -5,15 +5,15 @@
  */
 package no.hib.mod250.stocks;
 
-import java.math.BigDecimal;
-import java.util.Calendar;
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 
 /**
- *
+ * Simple bean used to model stock data received from the Yahoo Finance API.
+ * Has methods for converting to and from Json.
+ * 
  * @author Anders
  */
 public class Stock {
@@ -36,6 +36,11 @@ public class Stock {
     private double change;
     private double changePercent;
 
+    /**
+     * Creates a JsonObjectBuilder from all attributes of the object.
+     * 
+     * @return JsonObjectBuilder with all object attributes added.
+     */
     public JsonObjectBuilder generateJson() {
         return Json.createObjectBuilder()
                 .add("name", name)
@@ -52,6 +57,12 @@ public class Stock {
                 .add("chg_percent", changePercent);
     }
 
+    /**
+     * Populates the object using the provided JsonObject. If any of the 
+     * regular data is missing, does nothing after a missing attribute is 
+     * encountered.
+     * @param fields 
+     */
     public void updateFromJson(JsonObject fields) {
         try {
             name = fields.getString("name");
@@ -76,6 +87,12 @@ public class Stock {
         }
     }
     
+    /**
+     * Returns a Json string where this object is converted to Json and added
+     * in a Json array.
+     * 
+     * @return This object as Json array.
+     */
     public String generateJsonArrayString() {
         JsonArrayBuilder ab = Json.createArrayBuilder().add(generateJson());
         return Json.createObjectBuilder().add("resources", ab).build().toString();

@@ -9,8 +9,9 @@ import java.util.Set;
 import javax.ws.rs.core.Application;
 
 /**
- *
- * @author Andreas
+ * REST application config.
+ * 
+ * @author Anders
  */
 @javax.ws.rs.ApplicationPath("REST")
 public class ApplicationConfig extends Application {
