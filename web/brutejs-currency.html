@@ -34,9 +34,9 @@
           );
       </script>
   </div>
-
+  <h3>Brute JS</h3>
   <div class="col-sm-6" id="bruteJS">
-    <h3>Brute JS</h3>
+    
   </div>
 
 
@@ -45,7 +45,9 @@
 
     setInterval(function(){
         loadCurrenciesFromServer('REST/stocks/single/KRW=X',true,"bruteJS");
-        $('#bruteJS').load(document.URL +  ' #bruteJS');
+        document.getElementById("bruteJS").innerHTML = "";
+        
+        //$('#bruteJS').load(document.URL +  ' #bruteJS');
     }, 2000);
 
     </script>
