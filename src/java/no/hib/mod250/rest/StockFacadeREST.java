@@ -12,6 +12,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import no.hib.mod250.stocks.StockTestGenerator;
 
 /**
  * Rest class responsible for serving stock data to incoming requests.
@@ -25,9 +26,13 @@ import javax.ws.rs.Produces;
 public class StockFacadeREST {
 
     private final StockConsumer sc;
+    
+    private final StockTestGenerator stg;
+    private int testIndex = 0;
 
     public StockFacadeREST() {
         sc = new StockConsumer();
+        stg = new StockTestGenerator();
     }
 
     /**
@@ -81,5 +86,12 @@ public class StockFacadeREST {
         }
 
         return result;
+    }
+    
+    @GET
+    @Path("test")
+    @Produces({"application/json"})
+    public String getTestData() {
+        return stg.getData(testIndex++);
     }
 }
