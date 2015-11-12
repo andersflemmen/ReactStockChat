@@ -8,15 +8,15 @@ package no.hib.mod250.rest;
 import javax.ejb.Lock;
 import javax.ejb.LockType;
 import javax.ejb.Singleton;
-import javax.ejb.Stateless;
-import javax.json.JsonValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 /**
- *
+ * Rest class responsible for serving stock data to incoming requests.
+ * Uses the Yahoo Finance API through the StockConsumer class.
+ * 
  * @author Anders
  */
 @Singleton
@@ -30,6 +30,12 @@ public class StockFacadeREST {
         sc = new StockConsumer();
     }
 
+    /**
+     * REST method for fetching data for all rates converting from USD to all
+     * currencies provided by the Yahoo Finance API.
+     * 
+     * @return List of all retrieved currencies.
+     */
     @GET
     @Path("allCurrencies")
     @Produces({"application/json"})
@@ -37,6 +43,13 @@ public class StockFacadeREST {
         return sc.getAllCurrencies();
     }
 
+    /**
+     * REST method for getting data concerning a single stock using the Yahoo
+     * Finance API. If the stock is not found, an empty string is returned.
+     * 
+     * @param symbol Symbol of the requested stock.
+     * @return Stock data as Json, or null.
+     */
     @GET
     @Path("single/{symbol}")
     @Produces({"application/json"})
@@ -50,6 +63,13 @@ public class StockFacadeREST {
         return result;
     }
 
+    /**
+     * REST method for getting data concerning multiple stocks using the Yahoo
+     * Finance API. If the stocks are not found, an empty string is returned.
+     * 
+     * @param symbols Symbols of the requested stocks.
+     * @return Stock data as Json, or null.
+     */
     @GET
     @Path("multi/{symbols}")
     @Produces({"application/json"})

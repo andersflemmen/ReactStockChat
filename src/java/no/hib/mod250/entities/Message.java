@@ -18,7 +18,8 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- *
+ * Entity class representing a chat message.
+ * 
  * @author Anders
  */
 @Entity

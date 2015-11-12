@@ -5,23 +5,21 @@
  */
 package no.hib.mod250.rest;
 
-import java.math.BigDecimal;
 import java.util.List;
 import javax.ejb.EJB;
-import javax.ejb.EJBs;
 import javax.ejb.Lock;
 import javax.ejb.LockType;
 import javax.ejb.Singleton;
-import javax.ejb.Stateless;
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import no.hib.mod250.entities.Comment;
 
 /**
- *
+ * REST class responsible for serving stats to incoming GET requests.
+ * Communicates with the database using the other facades.
+ * 
  * @author Anders
  */
 @Singleton
@@ -35,9 +33,18 @@ public class StatsFacadeREST {
     @EJB
     private CommentFacadeREST cf;
     
-    @EJB
-    private StockFacadeREST sf;
-    
+    /**
+     * REST method for fetching application stats.
+     * Stats returned in Json format: 
+     * num_comments (Number of comments ever, int)
+     * num_comments_today (Number of comments today, int)
+     * num_messages (Number of chat messages ever, int)
+     * num_messages_today (Number of chat messages today, int)
+     * top_ten_commented (Array containing up to 10 most commented stocks,
+     * each Json object containing the attributes symbol (string) and count (long))
+     * 
+     * @return Json string of the newest stats.
+     */
     @GET
     @Path("all")
     @Produces({"application/json"})
