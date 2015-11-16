@@ -65,7 +65,7 @@ var MessageBox = React.createClass({
 
                 <div className="messageBox panel panel-info pull-right">
            
-                    <div className="chatHeader panel-heading">
+                    <div className="panel-heading">
                         <div className="row">
                             {this.state.username && (
                                 <div className="col-sm-8">
@@ -74,13 +74,13 @@ var MessageBox = React.createClass({
                             )}
 
                             {this.state.username && (
-                                <div className="col-sm-4">
+                                <div className="col-sm-4 logoutBtn">
                                     <Login logout={this.logout} logoutText="Logout" username={this.state.username}/>
                                 </div>
                             )}
-
+                        </div>
                             {!this.state.username && (
-                            <div>
+                            <div className="row">
                                 <div className="col-sm-1"></div>
 
                                 <div className="col-sm-10">
@@ -90,7 +90,7 @@ var MessageBox = React.createClass({
                                 <div className="col-sm-1"></div>
                             </div>
                             )}
-                        </div>
+                        
                     </div>
                     <MessageList data={this.state.data}/>
                     <div className="chatBottom">

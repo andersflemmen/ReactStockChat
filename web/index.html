@@ -47,9 +47,9 @@
                 </script>
             </div>
             <div class="row">
-                <div class="col-sm-1"></div>
+                <div class="col-sm-2"></div>
 
-                <div id="topStock" class="col-sm-5">
+                <div id="topStock" class="col-sm-4">
                     <script type="text/jsx">
                         ReactDOM.render(
                             <TopStocks url="REST/stocks/multi/" pollInterval={10000} />,
@@ -58,7 +58,7 @@
                     </script>
                 </div>
 
-                <div id="chat" class="chatView col-sm-5" >
+                <div id="chat" class="chatView col-sm-4" >
                     <script type="text/jsx">
                         ReactDOM.render(
                            <MessageBox loadUrl='REST/messages/last' pollInterval={1000} postUrl='REST/messages/new/' />,
@@ -67,7 +67,7 @@
                     </script>
                 </div>
 
-                <div class="col-sm-1"></div>
+                <div class="col-sm-2"></div>
 
             </div>
             <hr/>

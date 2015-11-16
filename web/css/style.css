@@ -10,7 +10,7 @@ and open the template in the editor.
 
  .messageBox {
      width: 400px;
-     height: 730px;
+     height: 710px;
  }
  
 
@@ -36,4 +36,8 @@ and open the template in the editor.
  
  .statsPadding{
      margin: 10px;
+ }
+ 
+ .logoutBtn{
+     margin: -10px;
  }
