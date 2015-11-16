@@ -75,7 +75,7 @@ var CommentBox = React.createClass({
                     </div>
 
                     <div className="col-sm-10">
-                        <h1>Comments for this stock</h1>
+                        <h1>Comments for {this.props.symbol}</h1>
                     </div>
 
                     <div className="col-sm-1">

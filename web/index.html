@@ -32,8 +32,6 @@
      <script src="components/Comments/commentbox.jsx" type="text/jsx"></script>
     <script type="text/jsx" src="components/navbar/navbar.jsx"></script>
 
-    <script type="text/jsx" src="components/stats/statsbox.jsx"></script>
-
 
   </head>
   <body>
@@ -65,25 +63,6 @@
                         ReactDOM.render(
                            <MessageBox loadUrl='REST/messages/last' pollInterval={1000} postUrl='REST/messages/new/' />,
                             document.getElementById('chat')
-                        );
-                    </script>
-                </div>
-
-                <div class="col-sm-1"></div>
-
-            </div>
-            <hr/>
-            <div class="row">
-
-                <div class="col-sm-1"></div>
-
-                
-
-                <div id="stats" class="col-sm-10">
-                    <script type="text/jsx">
-                        ReactDOM.render(
-                            <StatsBox url="REST/stats/all" pollInterval={10000} />,
-                            document.getElementById('stats')
                         );
                     </script>
                 </div>
