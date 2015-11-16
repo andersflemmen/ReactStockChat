@@ -1,4 +1,4 @@
-var MyNavbarInstance = React.createClass ({
+var Navbar = React.createClass ({
   render: function() {
 
     var Navbar = ReactBootstrap.Navbar,
@@ -9,7 +9,7 @@ var MyNavbarInstance = React.createClass ({
     MenuItem = ReactBootstrap.MenuItem;
   return (
   <div>
-    <Navbar brand={<a href="#"> React Demo </a>}  toggleNavKey={0} >
+    <Navbar brand={<a href="index.html"> React Demo </a>}  toggleNavKey={0} >
       <Nav right eventKey={0}>
         <NavItem eventKey={1} href="index.html">Home</NavItem>
         <NavItem eventKey={2} href="currencies.html">Currencies</NavItem>
@@ -22,7 +22,7 @@ var MyNavbarInstance = React.createClass ({
         <MenuItem divider />
         <MenuItem eventKey="1" href="currencies-vanillajs.html">Currencies VanillaJS</MenuItem>
         <MenuItem eventKey="2" href="currencies-smartjs.html">Currencies SmartJS</MenuItem>
-        <MenuItem eventKey="3" href="currencies-react.html">Currencies ReactJS</MenuItem> 
+        <MenuItem eventKey="3" href="currencies-react.html">Currencies ReactJS</MenuItem>
         <MenuItem divider />
         </NavDropdown>
       </Nav>
