@@ -18,22 +18,25 @@ var StockSearch = React.createClass({
     ,
     render: function(){
         return(
-            <div>
-                <div className="stockPanel center-block">
-                    <StockBox url="REST/stocks/single/" symbol={this.state.value} pollInterval={10000} ref="stockbox" className="center-block" update={this.update}/>
-                      <form onSubmit={this.submit}>
-                        <div className="input-group">
-                            <input type="text" ref="inputField" className="form-control" placeholder="Enter stock symbol..." />
-                            <span className="input-group-btn">
-                                <button type="submit" className="btn btn-primary" ><span className="glyphicon glyphicon-search"></span></button>
-                            </span>
-                        </div>  
-                    </form>
+            <div className="row">
+                <div className="col-sm-2"></div>
+                <div className="col-sm-8">
+                    <div className="stockPanel center-block">
+                        <StockBox url="REST/stocks/single/" symbol={this.state.value} pollInterval={10000} ref="stockbox" update={this.update}/>
+                        <form onSubmit={this.submit}>
+                            <div className="input-group">
+                                <input type="text" ref="inputField" className="form-control" placeholder="Enter stock symbol..." />
+                                <span className="input-group-btn">
+                                    <button type="submit" className="btn btn-primary" ><span className="glyphicon glyphicon-search"></span></button>
+                                </span>
+                            </div>  
+                        </form>
+                    </div>
+                    <div className="">       
+                        <CommentBox symbol={this.state.commentSymbol} loadUrl={"REST/comments/get/" + this.state.commentSymbol} pollInterval={1000} postUrl={"REST/comments/new/" + this.state.commentSymbol} ref="commentBox"/>
+                    </div>      
                 </div>
-                <hr/>
-                <div className="">       
-                    <CommentBox loadUrl={"REST/comments/get/" + this.state.commentSymbol} pollInterval={1000} postUrl={"REST/comments/new/" + this.state.commentSymbol} ref="commentBox"/>
-                </div>      
+                <div className="col-sm-2"></div>
             </div>
         );
     }

@@ -10,11 +10,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.6.15/browser.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.2/marked.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.0/react.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/JSXTransformer.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react-bootstrap/0.25.1/react-bootstrap.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="https://fb.me/react-dom-0.14.0.js"></script>
+
+    <script src="https://fb.me/react-dom-0.14.0.min.js"></script>
+    <script src="https://fb.me/react-with-addons-0.14.2.min.js"></script>
+    
 
     <script src="plainJS/currency.js"></script>
     <script  type="text/jsx" src="components/navbar/navbar.jsx"></script>
@@ -26,7 +28,7 @@
     <div id="navbar">
         <script type="text/jsx">
             ReactDOM.render(
-                <MyNavbarInstance />,
+                <Navbar />,
                 document.getElementById('navbar')
             );
         </script>
@@ -39,13 +41,13 @@
 
     <script>
     (function(){
-      loadCurrenciesFromServer('REST/stocks/allCurrencies',false,"currencies");
+      loadCurrenciesFromServer('REST/stocks/test',false,"currencies");
     })();
 
     setInterval(function(){
-      loadCurrenciesFromServer('REST/stocks/allCurrencies',false,"currencies");
+      loadCurrenciesFromServer('REST/stocks/test',false,"currencies");
       $('#currencies').load(document.URL +  ' #currencies');
-    }, 10000);
+    }, 2000);
 
       </script>
 

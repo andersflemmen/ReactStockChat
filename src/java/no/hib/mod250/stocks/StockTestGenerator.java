@@ -256,11 +256,11 @@ public class StockTestGenerator {
     
     public String getData(int index) {
         JsonArrayBuilder ab = Json.createArrayBuilder();
-        
-        for (int i = 0; i < 1000; i++) { 
-            data.get(index).setSymbol("" + i);
+        int x = index % data.size();
+        for (int i = 0; i < 100; i++) { 
+            data.get(x).setSymbol("" + i);
             
-            ab = ab.add(data.get(index).generateJson());
+            ab = ab.add(data.get(x).generateJson());
         }
 
         return Json.createObjectBuilder().add("resources", ab).build().toString();

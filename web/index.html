@@ -32,8 +32,6 @@
      <script src="components/Comments/commentbox.jsx" type="text/jsx"></script>
     <script type="text/jsx" src="components/navbar/navbar.jsx"></script>
 
-    <script type="text/jsx" src="components/stats/statsbox.jsx"></script>
-
 
   </head>
   <body>
@@ -43,15 +41,15 @@
             <div id="navbar">
                 <script type="text/jsx">
                     ReactDOM.render(
-                        <MyNavbarInstance/>,
+                        <Navbar/>,
                         document.getElementById('navbar')
                     );
                 </script>
             </div>
             <div class="row">
-                <div class="col-sm-1"></div>
+                <div class="col-sm-2"></div>
 
-                <div id="topStock" class="col-sm-5">
+                <div id="topStock" class="col-sm-4">
                     <script type="text/jsx">
                         ReactDOM.render(
                             <TopStocks url="REST/stocks/multi/" pollInterval={10000} />,
@@ -60,7 +58,7 @@
                     </script>
                 </div>
 
-                <div id="chat" class="chatView col-sm-5" >
+                <div id="chat" class="chatView col-sm-4" >
                     <script type="text/jsx">
                         ReactDOM.render(
                            <MessageBox loadUrl='REST/messages/last' pollInterval={1000} postUrl='REST/messages/new/' />,
@@ -69,26 +67,7 @@
                     </script>
                 </div>
 
-                <div class="col-sm-1"></div>
-
-            </div>
-            <hr/>
-            <div class="row">
-
-                <div class="col-sm-1"></div>
-
-                
-
-                <div id="stats" class="col-sm-10">
-                    <script type="text/jsx">
-                        ReactDOM.render(
-                            <StatsBox url="REST/stats/all" pollInterval={10000} />,
-                            document.getElementById('stats')
-                        );
-                    </script>
-                </div>
-
-                <div class="col-sm-1"></div>
+                <div class="col-sm-2"></div>
 
             </div>
             <hr/>
@@ -100,7 +79,7 @@
                         );
                     </script>
             </div>
-            
+
             <hr/>
             <div id="TEST">
             </div>

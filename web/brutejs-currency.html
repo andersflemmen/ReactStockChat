@@ -29,14 +29,14 @@
   <div id="navbar">
       <script type="text/jsx">
           ReactDOM.render(
-              <MyNavbarInstance />,
+              <Navbar />,
               document.getElementById('navbar')
           );
       </script>
   </div>
   <h3>Brute JS</h3>
   <div class="col-sm-6" id="bruteJS">
-    
+
   </div>
 
 
@@ -46,7 +46,7 @@
     setInterval(function(){
         loadCurrenciesFromServer('REST/stocks/single/KRW=X',true,"bruteJS");
         document.getElementById("bruteJS").innerHTML = "";
-        
+
         //$('#bruteJS').load(document.URL +  ' #bruteJS');
     }, 2000);
 

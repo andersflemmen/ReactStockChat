@@ -1,5 +1,5 @@
 var StockBox = React.createClass({
-
+    
         loadCommentsFromServer: function() {
           $.ajax({
             url: this.props.url + this.props.symbol,
@@ -52,10 +52,10 @@ var StockBox = React.createClass({
         },
 
         render: function() {
-          return (
+          return (   
             <div className="stockBox">
               <StockList stocks={this.state.stocks} />
-            </div>
+            </div>       
           );
         }
 });
