@@ -257,7 +257,7 @@ public class StockTestGenerator {
     public String getData(int index) {
         JsonArrayBuilder ab = Json.createArrayBuilder();
         int x = index % data.size();
-        for (int i = 0; i < 100; i++) { 
+        for (int i = 0; i < 1000; i++) { 
             data.get(x).setSymbol("" + i);
             
             ab = ab.add(data.get(x).generateJson());
