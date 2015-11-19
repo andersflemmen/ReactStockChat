@@ -14,8 +14,8 @@ function timeDifference(current, previous) {
     var msPerYear = msPerDay * 365;
 
     var elapsed = current - previous;
-    console.log(elapsed);
-    if (elapsed < 0 || isNaN(previous)){
+
+    if (elapsed < 1000 || isNaN(previous)){
         return 'Now';
     }
 
