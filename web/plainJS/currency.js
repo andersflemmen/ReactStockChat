@@ -126,20 +126,6 @@ function createStockElement(stock,place){
   pagePlace.appendChild(mainDiv);
 
 };
-// function updateSingleStock(url){
-//   $.ajax({
-//     url: url,
-//     dataType: 'json',
-//     cache: false,
-//     success: function(data) {
-//         updateValues(data.resources[0]);
-//     }.bind(this),
-//     error: function(xhr, status, err) {
-//       console.error(status, err.toString());
-//     }
-//   })
-//
-// };
 
 function createStocksBrute(stocks,single,place){
   if(single === true){
@@ -152,63 +138,6 @@ function createStocksBrute(stocks,single,place){
 );
 }
 }
-
-// function updateValues(stock){
-//
-//   var name = stock.name;
-//   var price = stock.price;
-//   var symbol = stock.symbol;
-//   var volume = stock.volume;
-//   var type = stock.type;
-//   var day_high = stock.day_high;
-//   var day_low = stock.day_low;
-//   var year_high = stock.year_high;
-//   var year_low = stock.year_low;
-//   var chg_percent = stock.chg_percent;
-//   var change = stock.change;
-//
-//   var date = (new Date(stock.utctime)).toLocaleString();
-//
-//   var stockName = document.getElementById("name");
-//   stockName.innerHTML = name;
-//
-//   var priceLi = document.getElementById("price");
-//   priceLi.innerHTML = ("Price: ").bold() + price;
-//
-//   var symbolLi = document.getElementById("symbol");
-//   symbolLi.innerHTML = symbolLi.innerHTML = "Symbol: ".bold() + symbol;
-//
-//   var volumeLi = document.getElementById("volume");
-//   volumeLi.innerHTML = "Volume: ".bold() +volume;
-//
-//   var typeLi = document.getElementById("type");
-//   typeLi.innerHTML = "Type: ".bold() + type;
-//
-//   var dayHighLi = document.getElementById("day_high");
-//   dayHighLi.innerHTML = "Day High: ".bold() + day_high;
-//
-//   var dayLowLi = document.getElementById("day_low");
-//   dayLowLi.innerHTML = "Day Low: ".bold() + day_low;
-//
-//   var yearHighLi = document.getElementById("year_high");
-//   yearHighLi.innerHTML = "Year High: ".bold() + year_high;
-//
-//   var yearLowLi = document.getElementById("year_low");
-//   yearLowLi.innerHTML = "Year low: ".bold() + year_low;
-//
-//   var changeLi = document.getElementById("chg_percent");
-//   changeLi.className = chg_percent > 0 ? "list-group-item list-group-item-success" : chg_percent < 0 ? "list-group-item list-group-item-danger" : "list-group-item list-group-item-warning" ;
-//   changeLi.innerHTML = "Change in %: ".bold() + chg_percent;
-//
-//   var change2Li = document.getElementById("change");
-//   change2Li.innerHTML = "Change: ".bold() + change;
-//
-//   lastUpdateB = document.getElementById("lastUpdateB");
-//   change2Li.className = change > 0 ? "list-group-item list-group-item-success" : change < 0 ? "list-group-item list-group-item-danger" : "list-group-item list-group-item-warning" ;
-//   lastUpdateB.innerHTML = "Last update: ".bold() + date;
-//
-// }
-
 function loadCurrenciesFromServerBrute(url, single, place){
 
   $.ajax({
@@ -224,18 +153,3 @@ function loadCurrenciesFromServerBrute(url, single, place){
   })
 
 };
-
-// function updateSingleStock(url){
-//   $.ajax({
-//     url: url,
-//     dataType: 'json',
-//     cache: false,
-//     success: function(data) {
-//         updateValues(data.resources[0]);
-//     }.bind(this),
-//     error: function(xhr, status, err) {
-//       console.error(status, err.toString());
-//     }
-//   })
-//
-// };

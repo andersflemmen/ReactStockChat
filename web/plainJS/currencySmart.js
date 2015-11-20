@@ -175,15 +175,11 @@ function updateValues(stock,index){
 
 
 function createStocks(stocks,single,place){
-  if(single === true){
-  //  createStockElement(stocks[0],place);
-  }
-  else{
     stocks.map(function (stock, index){
       createStockHTML(place, index);
     }
   );
-}
+
 }
 
 function updateMultipleValues(stocks){
