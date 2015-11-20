@@ -141,7 +141,7 @@ function createStockElement(stock,place){
 //
 // };
 
-function createStocks(stocks,single,place){
+function createStocksBrute(stocks,single,place){
   if(single === true){
     createStockElement(stocks[0],place);
   }
@@ -216,7 +216,7 @@ function loadCurrenciesFromServerBrute(url, single, place){
     dataType: 'json',
     cache: false,
     success: function(data) {
-        createStocks(data.resources,single,place);
+        createStocksBrute(data.resources,single,place);
     }.bind(this),
     error: function(xhr, status, err) {
       console.error(status, err.toString());

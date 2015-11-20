@@ -1,8 +1,5 @@
 function createStockHTML(place,index){
 
-  console.log("place: " +place);
-  console.log("index: " + index);
-
   var mainDiv = document.createElement("DIV");
 
   mainDiv.className = "panel panel-info pull-left stockPanel";
@@ -120,7 +117,6 @@ function createStockHTML(place,index){
 
 function updateValues(stock,index){
 
-
   var name = stock.name;
   var price = stock.price;
   var symbol = stock.symbol;
@@ -180,7 +176,7 @@ function updateValues(stock,index){
 
 function createStocks(stocks,single,place){
   if(single === true){
-    createStockElement(stocks[0],place);
+  //  createStockElement(stocks[0],place);
   }
   else{
     stocks.map(function (stock, index){
@@ -226,7 +222,6 @@ function updateSingleStock(url){
   })
 
 };
-
 
 function updateMultipleStocks(url){
   $.ajax({
