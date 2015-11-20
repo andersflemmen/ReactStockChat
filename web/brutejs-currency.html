@@ -41,10 +41,10 @@
 
 
   <script>
-    loadCurrenciesFromServer('REST/stocks/single/KRW=X',true,"bruteJS");
+    loadCurrenciesFromServerBrute('REST/stocks/single/KRW=X',true,"bruteJS");
 
     setInterval(function(){
-        loadCurrenciesFromServer('REST/stocks/single/KRW=X',true,"bruteJS");
+        loadCurrenciesFromServerBrute('REST/stocks/single/KRW=X',true,"bruteJS");
         document.getElementById("bruteJS").innerHTML = "";
 
         //$('#bruteJS').load(document.URL +  ' #bruteJS');

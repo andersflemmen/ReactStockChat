@@ -16,7 +16,7 @@
 
     <script src="https://fb.me/react-dom-0.14.0.min.js"></script>
     <script src="https://fb.me/react-with-addons-0.14.2.min.js"></script>
-    
+
 
     <script src="plainJS/currency.js"></script>
     <script  type="text/jsx" src="components/navbar/navbar.jsx"></script>
@@ -41,11 +41,11 @@
 
     <script>
     (function(){
-      loadCurrenciesFromServer('REST/stocks/test',false,"currencies");
+      loadCurrenciesFromServerBrute('REST/stocks/test',false,"currencies");
     })();
 
     setInterval(function(){
-      loadCurrenciesFromServer('REST/stocks/test',false,"currencies");
+      loadCurrenciesFromServerBrute('REST/stocks/test',false,"currencies");
       $('#currencies').load(document.URL +  ' #currencies');
     }, 5000);
 
