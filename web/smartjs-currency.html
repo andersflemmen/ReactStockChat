@@ -16,7 +16,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script src="https://fb.me/react-dom-0.14.0.js"></script>
 
-<script src="plainJS/currency.js"></script>
+<script src="plainJS/currencySmart.js"></script>
 <script type="text/jsx" src="components/navbar/navbar.jsx"></script>
 <script type="text/jsx" src="components/stocks/stocklist.jsx"></script>
 <script type="text/jsx" src="components/stocks/stock.jsx"></script>
@@ -41,7 +41,7 @@
   </div>
 
     <script>
-      createStockHTML("smartJS");
+      createStockHTML(1,"smartJS");
       setInterval(function(){
             updateSingleStock('REST/stocks/single/KRW=X');
       }, 2000);
