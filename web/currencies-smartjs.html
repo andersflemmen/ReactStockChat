@@ -33,21 +33,16 @@
     </div>
 
     <div id="currencies">
-
     </div>
 
-
     <script>
+      loadCurrenciesFromServerSmart('REST/stocks/test',false,"currencies");
 
-      loadCurrenciesFromServer('REST/stocks/test',false,"currencies");
+      setInterval(function(){
+        updateMultipleStocks('REST/stocks/test');
+      }, 2000);
 
-    setInterval(function(){
-      updateMultipleStocks('REST/stocks/test');
-    }, 2000);
-
-      </script>
-
-
+    </script>
 
   </body>
 </html>
